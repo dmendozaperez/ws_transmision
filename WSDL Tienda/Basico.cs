@@ -12,6 +12,8 @@ namespace WSDL_Tienda
 {
     public class Basico
     {
+        #region<prime>
+        #endregion
         public static string _user_service { set; get; }
         public static string _password_service { set; get; }
 
