@@ -52,8 +52,8 @@ namespace WSDL_Tienda
             try
             {
 
-               //Basico._update_wsurl_FE(_cod_tda, _ws_url);
-                _error = "xxx";
+               Basico._update_wsurl_FE(_cod_tda, _ws_url);
+               // _error = "xxx";
             }
             catch
             {
@@ -68,8 +68,8 @@ namespace WSDL_Tienda
             string _error = "";
             try
             {
-                //Basico._update_wsurl_FE_Win(_cod_tda, _ws_url);
-                _error = "xxx";
+                Basico._update_wsurl_FE_Win(_cod_tda, _ws_url);
+                //_error = "xxx";
             }
             catch(Exception exc)
             {
@@ -85,8 +85,8 @@ namespace WSDL_Tienda
             string _estado = "0";
             try
             {
-                //_error = Basico._verifica_data_fepe_dll(_cod_tda, _fepe_nombre, fepe_peso, ref _estado);
-                _error = "aaa";
+                _error = Basico._verifica_data_fepe_dll(_cod_tda, _fepe_nombre, fepe_peso, ref _estado);
+                //_error = "aaa";
             }
             catch (Exception exc)
             {
@@ -121,8 +121,8 @@ namespace WSDL_Tienda
             string _estado = "0";
             try
             {
-                //_error = Basico._verifica_data_certificado(_cod_tda, _cer_nombre, cer_peso, ref _estado);
-                _error = "aa";
+                _error = Basico._verifica_data_certificado(_cod_tda, _cer_nombre, cer_peso, ref _estado);
+                //_error = "aa";
             }
             catch (Exception exc)
             {
@@ -156,8 +156,8 @@ namespace WSDL_Tienda
             string _estado = "0";
             try
             {
-                //_error = Basico._verifica_data_url_win(_cod_tda, _ws_url, ref _estado);
-                _error = "zzz";
+                _error = Basico._verifica_data_url_win(_cod_tda, _ws_url, ref _estado);
+                //_error = "zzz";
             }
             catch (Exception exc)
             {
@@ -191,8 +191,8 @@ namespace WSDL_Tienda
             string _estado = "0";
             try
             {
-                //_error = Basico._verifica_data_url(_cod_tda, _ws_url,ref _estado);
-                _error = "xxx";
+                _error = Basico._verifica_data_url(_cod_tda, _ws_url,ref _estado);
+                //_error = "xxx";
             }
             catch(Exception exc)
             {
@@ -229,14 +229,14 @@ namespace WSDL_Tienda
             try
             {
 
-                _error = "aaa";
+                //_error = "aaa";
 
-                //dt = Basico._dt_ws_url_return(_tipo, _url_in);
-                //if (dt!=null)
-                //{
-                //    _estado = dt.Rows[0]["existe"].ToString();
-                //    _url= dt.Rows[0]["url_ws"].ToString();
-                //}
+                dt = Basico._dt_ws_url_return(_tipo, _url_in);
+                if (dt != null)
+                {
+                    _estado = dt.Rows[0]["existe"].ToString();
+                    _url = dt.Rows[0]["url_ws"].ToString();
+                }
             }
             catch(Exception exc)
             {
@@ -497,8 +497,8 @@ namespace WSDL_Tienda
             string _error = "";
             try
             {
-                //_error = Basico.actualizar_dll_com(_tienda, _archivo);
-                _error = "xxx";
+                _error = Basico.actualizar_dll_com(_tienda, _archivo);
+               // _error = "xxx";
             }
             catch (Exception exc)
             {
@@ -514,8 +514,8 @@ namespace WSDL_Tienda
             string _error = "";
             try
             {
-                //_error = Basico._actualizar_fepe_dll(_tienda, _archivo, _tanaño);
-                _error = "xxx";
+                _error = Basico._actualizar_fepe_dll(_tienda, _archivo, _tanaño);
+                //_error = "xxx";
 
             }
             catch (Exception exc)
@@ -531,8 +531,8 @@ namespace WSDL_Tienda
             string _error = "";
             try
             {
-                //_error = Basico._actualizar_certificado_pfx(_tienda, _archivo, _tanaño);
-                _error = "xx";
+                _error = Basico._actualizar_certificado_pfx(_tienda, _archivo, _tanaño);
+               // _error = "xx";
             }
             catch (Exception exc)
             {
@@ -547,8 +547,8 @@ namespace WSDL_Tienda
             string _error="";
             try
             {
-                //_error=Basico.actualizar_version_dllbasico(_tienda, _archivo, _version);
-                _error = "xxx";
+                _error=Basico.actualizar_version_dllbasico(_tienda, _archivo, _version);
+                //_error = "xxx";
             }
             catch(Exception exc)
             {
@@ -726,8 +726,8 @@ namespace WSDL_Tienda
             Byte[] _archivo = null;
             try
             {
-                //_archivo = Basico._extrae_archivo_dlltda(_name_archivo);
-                _archivo = null;
+                _archivo = Basico._extrae_archivo_dlltda(_name_archivo);
+               // _archivo = null;
             }
             catch
             {
@@ -758,8 +758,8 @@ namespace WSDL_Tienda
             Boolean _valida = false;
             try
             {
-                //_valida = Basico._verifica_dll_fepe(_tamaño);
-                _valida = false;
+                _valida = Basico._verifica_dll_fepe(_tamaño);
+               // _valida = false;
             }
             catch
             {
@@ -774,8 +774,8 @@ namespace WSDL_Tienda
             Boolean _valida = false;
             try
             {
-                //_valida = Basico._verifica_certificado(_tamaño);
-                _valida = false;
+                _valida = Basico._verifica_certificado(_tamaño);
+               // _valida = false;
             }
             catch
             {
@@ -790,8 +790,8 @@ namespace WSDL_Tienda
             Boolean _valida = false;
             try
             {
-                //_valida = Basico._verifica_version_dllgenerahash(_version);
-                _valida = false;
+                _valida = Basico._verifica_version_dllgenerahash(_version);
+               // _valida = false;
             }
             catch
             {
@@ -806,8 +806,8 @@ namespace WSDL_Tienda
             Boolean _valida = false;
             try
             {
-                //_valida=Basico._verifica_version_windll(_version);
-                _valida = false;
+               _valida=Basico._verifica_version_windll(_version);
+               // _valida = false;
             }
             catch
             {
@@ -926,8 +926,8 @@ namespace WSDL_Tienda
             string _error = "";
             try
             {
-                //_error = Basico._existe_archivo(_nombre);
-                _error = "xxxx";
+                _error = Basico._existe_archivo(_nombre);
+                //_error = "xxxx";
             }
             catch(Exception exc)
             {
@@ -942,17 +942,17 @@ namespace WSDL_Tienda
             string valida = "";
             try
             {
-                valida = "xxxx";
-                //if (VerificarPermisos(CredencialAutenticacion))
-                //{
+                //valida = "xxxx";
+                if (VerificarPermisos(CredencialAutenticacion))
+                {
 
-                //    valida = Basico.copiar_archivo_Tienda_SQL(_archivo_zip, _name);
+                    valida = Basico.copiar_archivo_Tienda_SQL(_archivo_zip, _name);
 
-                //}
-                //else
-                //{
-                //    valida = "usuario y/o contraseña no valida";
-                //}
+                }
+                else
+                {
+                    valida = "usuario y/o contraseña no valida";
+                }
             }
             catch (Exception exc)
             {
@@ -1000,9 +1000,9 @@ namespace WSDL_Tienda
             string _error = "";
             try
             {
-                _error = "xxxx";
-                //_error = Basico.update_vales(_serie, _correlativo, _cod_tda_venta, _dni_venta,
-                //_nombres_venta, _fecha_doc, _tipo_doc, _serie_doc, _numero_doc, _estado_doc, _fc_nint, _email_venta, _telefono_venta);
+                //_error = "xxxx";
+                _error = Basico.update_vales(_serie, _correlativo, _cod_tda_venta, _dni_venta,
+                _nombres_venta, _fecha_doc, _tipo_doc, _serie_doc, _numero_doc, _estado_doc, _fc_nint, _email_venta, _telefono_venta);
 
             }
             catch (Exception exc)
@@ -1020,12 +1020,12 @@ namespace WSDL_Tienda
             string _error = "";
             try
             {
-                _error = "ssss";
+                //_error = "ssss";
 
-                //_error = Basico.update_venta_empleado(_Tip_Id_Ven, _Nro_Dni_Ven, _Cod_Tda_Ven,
-                //                                    _Nro_Doc_Ven, _Tip_Doc_Ven, _Ser_Doc_Ven,
-                //                                    _Num_Doc_Ven, _Fec_Doc_Ven, _Est_Doc_Ven,
-                //                                    _Fc_Nin_Ven);
+                _error = Basico.update_venta_empleado(_Tip_Id_Ven, _Nro_Dni_Ven, _Cod_Tda_Ven,
+                                                    _Nro_Doc_Ven, _Tip_Doc_Ven, _Ser_Doc_Ven,
+                                                    _Num_Doc_Ven, _Fec_Doc_Ven, _Est_Doc_Ven,
+                                                    _Fc_Nin_Ven);
             }
             catch (Exception exc)
             {

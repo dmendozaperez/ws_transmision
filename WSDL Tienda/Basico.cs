@@ -1381,7 +1381,7 @@ namespace WSDL_Tienda
 
                         //NetworkShare.ConnectToShare(@dt_ruta.Rows[i]["ruta_server"].ToString(), "interfa", "interfa");
 
-                        if (_ruta_tda == @"D:\BASE_TIENDA")
+                        if (_ruta_tda == @"E:\BASE_TIENDA")
                         {                       
 
                                 if (!(Directory.Exists(@_ruta_carpeta)))
