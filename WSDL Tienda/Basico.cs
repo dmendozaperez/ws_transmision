@@ -787,7 +787,7 @@ namespace WSDL_Tienda
 
         public static void _compara_version(string _version_tienda,ref byte[] _archivo)
         {
-            string _ruta_exe = "D:/Transmision/TRANSMI.exe";
+            string _ruta_exe = "E:/Transmision/TRANSMI.exe";
             string _version_exe_server;
             try
             {
@@ -809,7 +809,7 @@ namespace WSDL_Tienda
 
         public static void _compara_version(string _version_tienda, ref byte[] _archivo,string _name_Archivo)
         {
-            string _ruta_exe = "D:/Transmision/" + _name_Archivo;
+            string _ruta_exe = "E:/Transmision/" + _name_Archivo;
             string _version_exe_server;
             try
             {

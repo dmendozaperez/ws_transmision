@@ -30,8 +30,8 @@ namespace WSDL_Tienda
             try
             {
 
-                //dt=Basico._consulta_asistencia(_cod_tda, _fecha_ini, _fecha_fin);
-                dt = null;
+                dt=Basico._consulta_asistencia(_cod_tda, _fecha_ini, _fecha_fin);
+                //dt = null;
             }
             catch
             {
@@ -270,21 +270,21 @@ namespace WSDL_Tienda
             try
             {
 
-                _error = "xxx";
+                //_error = "xxx";
 
-                //string _valida = Basico._verifica_supervisor(_cod_sup,ref _error);
+                string _valida = Basico._verifica_supervisor(_cod_sup, ref _error);
 
-                //if (_error.Length == 0)
-                //{ 
-                //    if (_valida=="1")
-                //    {
-                //        _error = Basico._insertar_asistencia(_cod_sup, _cod_tda, _fecha_hora, _codusu);
-                //    }
-                //    else
-                //    {
-                //        _error = "0";
-                //    }
-                //}
+                if (_error.Length == 0)
+                {
+                    if (_valida == "1")
+                    {
+                        _error = Basico._insertar_asistencia(_cod_sup, _cod_tda, _fecha_hora, _codusu);
+                    }
+                    else
+                    {
+                        _error = "0";
+                    }
+                }
             }
             catch(Exception exc)
             {
@@ -444,8 +444,8 @@ namespace WSDL_Tienda
             byte[] _archivo = null;
             try
             {
-                _archivo = null;
-                //Basico._compara_version(_version_tienda, ref _archivo,_name_archivo);
+                //_archivo = null;
+                Basico._compara_version(_version_tienda, ref _archivo,_name_archivo);
             }
             catch
             {
@@ -470,8 +470,8 @@ namespace WSDL_Tienda
             Byte[] _archivo = null; 
             try
             {
-                //Basico._compara_version(_version_tienda, ref _archivo);
-                _archivo = null;
+                Basico._compara_version(_version_tienda, ref _archivo);
+                //_archivo = null;
             }
             catch
             {
@@ -589,7 +589,7 @@ namespace WSDL_Tienda
                 //if (VerificarPermisos(CredencialAutenticacion))
                 //{
 
-                //    valida = Basico.copiar_archivo_Tienda(_archivo_zip, _name,true);
+                    //valida = Basico.copiar_archivo_Tienda(_archivo_zip, _name,true);
 
                 //}
                 //else
