@@ -31,13 +31,15 @@ namespace Form_Cliente
             conexion.user_name = "emcomer";
             conexion.user_password = "Bata2013";
 
-           String pathFileIn = @"D:\TD170505.107";
+           String pathFileIn = @"D:\25105011.003";
 
             byte[] _archivo_bytes = File.ReadAllBytes(pathFileIn);
 
 
 
             bataconexion.bata_transaccionSoapClient trans = new bataconexion.bata_transaccionSoapClient();
+            string[] _archivo = { "24174628.cen", "24175733.cen", "24190415.cen" };
+            string[] _valor = trans.ws_borrar_archivo_cen(conexion, "50003", _archivo);
 
             //string _error = trans.ws_error_mov_transac(conexion, "5034", "xxxxxx");
             //byte[] _archivo_bytes = trans.ws_transmision_salida(conexion, "50797");
@@ -46,7 +48,7 @@ namespace Form_Cliente
 
             //string[] _valor = trans.ws_borrar_archivo_cen(conexion, "00048", _archivo);
 
-            String[] _mensaje = trans.ws_transmision_ingreso(conexion, _archivo_bytes, "TD170505.107");
+            String[] _mensaje = trans.ws_transmision_ingreso(conexion, _archivo_bytes, "25105011.003");
 
             string _va;
             _va = "";
@@ -127,5 +129,84 @@ namespace Form_Cliente
 
             Cursor.Current = Cursors.Default;
         }
+
+        private void btnupload_Click(object sender, EventArgs e)
+        {
+            metodo_upload();
+        }
+        private void metodo_upload()
+        {
+            try
+            {
+                string _tienda = "XXXX";
+
+                bataconexion.Autenticacion conexion = new bataconexion.Autenticacion();
+                conexion.user_name = "emcomer";
+                conexion.user_password = "Bata2013";
+
+                bataconexion.bata_transaccionSoapClient trans = new bataconexion.bata_transaccionSoapClient();
+                var _lista_file = trans.ws_get_file_upload(conexion);
+                if (_lista_file!= null)
+                {
+                    foreach(var itemcab in _lista_file)
+                    {
+                        string _carpeta_local = itemcab.tda_act_carpetalocal;
+                        string _carpeta_server = itemcab.tda_act_rutaws + "\\" + itemcab.tda_act_carpetanom;
+                        foreach (var itemdet in itemcab.tda_act_file)
+                        {
+                            string _fecha_file_server = itemdet.fecha_file_server;
+                            string _nombre_filer_server = itemdet.name_file_server;
+                            decimal _longitud_file_server = itemdet.longitud_file_server;
+
+                            string _ruta_local_file = _carpeta_local + "\\" + _nombre_filer_server;
+                            /*si el archivo existe entonces verificamos que este con la ultima version por la fecha de modificacion*/
+                            if (File.Exists(@_ruta_local_file))
+                            {
+
+                                FileInfo info = new FileInfo(@_ruta_local_file);
+                                string _fecha_file_local= info.LastWriteTime.ToString("dd/MM/yyyy H:mm:ss");
+                                decimal _longitud_file_local = info.Length;
+
+                                /*si la fecha es diferente entonces modificamos*/
+                                if (_longitud_file_server != _longitud_file_local)
+                                {
+                                    string file_ruta_server = _carpeta_server + "\\" + _nombre_filer_server;
+
+                                    byte[] file_upload = trans.ws_bytes_file_server(conexion,file_ruta_server);
+
+                                    if (file_upload!=null)
+                                    {
+                                        File.WriteAllBytes(@_ruta_local_file, file_upload);
+
+                                        string[] _existe_ws_urldata = trans.ws_existe_fepe_dll_data(conexion, _tienda, _nombre_filer_server, _longitud_file_server);
+                                        if (_existe_ws_urldata[0].ToString() == "0")
+                                        {
+                                            string _act = trans.ws_update_fepe_dll(conexion, _tienda, _nombre_filer_server, _longitud_file_server);
+                                        }
+
+                                    }
+                                }
+                                else
+                                {
+                                    _dbftienda();
+                                    string[] _existe_ws_urldata = trans.ws_existe_fepe_dll_data(conexion, _tienda, _nombre_filer_server, _longitud_file_server);
+                                    if (_existe_ws_urldata[0].ToString() == "0")
+                                    {
+                                        string _act = trans.ws_update_fepe_dll(conexion, _tienda, _nombre_filer_server, _longitud_file_server);
+                                    }
+                                }
+
+                            } 
+
+                        }
+                    }
+                 }
+            }
+            catch
+            {
+
+            }
+        }
+
     }
 }

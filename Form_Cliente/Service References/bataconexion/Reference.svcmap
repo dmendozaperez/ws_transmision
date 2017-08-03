@@ -19,11 +19,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://10.10.10.208/web_site_tienda/bata_transaccion.asmx" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://localhost:2091/bata_transaccion.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="bata_transaccion.wsdl" MetadataType="Wsdl" ID="3478ea49-cdaf-4f78-a53f-488a52fbb161" SourceId="1" SourceUrl="http://10.10.10.208/web_site_tienda/bata_transaccion.asmx?wsdl" />
-    <MetadataFile FileName="bata_transaccion1.disco" MetadataType="Disco" ID="581781a9-e925-497c-ab2c-741344a4a0ff" SourceId="1" SourceUrl="http://10.10.10.208/web_site_tienda/bata_transaccion.asmx?disco" />
+    <MetadataFile FileName="bata_transaccion.disco" MetadataType="Disco" ID="6a5fe111-8813-4c20-8a16-a1f8323f9fb4" SourceId="1" SourceUrl="http://localhost:2091/bata_transaccion.asmx?disco" />
+    <MetadataFile FileName="bata_transaccion1.wsdl" MetadataType="Wsdl" ID="8b97b68b-17a7-48aa-baab-319d6b3bfd2e" SourceId="1" SourceUrl="http://localhost:2091/bata_transaccion.asmx?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

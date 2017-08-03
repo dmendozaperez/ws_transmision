@@ -10,7 +10,7 @@ namespace WSDL_Tienda
         //static string strconexion = ConfigurationManager.ConnectionStrings["MyConexionSql"].ConnectionString;
         public static string myconexion()
         {
-            return "Server=.;Database=BdWebService;User ID=sa;Password=Bata2013;Trusted_Connection=False;";
+            return "Server=10.10.10.208;Database=BdWebService;User ID=sa;Password=Bata2013;Trusted_Connection=False;";
         }
         public static string myconexion_tda()
         {

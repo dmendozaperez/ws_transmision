@@ -97,17 +97,23 @@
     <WCFMetadataStorage Include="Service References\bataconexion\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\bataconexion\bata_transaccion.wsdl" />
+    <None Include="Service References\bataconexion\bata_transaccion1.wsdl" />
     <None Include="Service References\bataconexion\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Service References\bataconexion\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\bataconexion\Form_Cliente.bataconexion.Ruta_Update_File.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\bataconexion\Form_Cliente.bataconexion.ws_actualiza_archivoResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\bataconexion\Form_Cliente.bataconexion.ws_borrar_archivo_cenResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\bataconexion\Form_Cliente.bataconexion.ws_bytes_file_serverResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\bataconexion\Form_Cliente.bataconexion.ws_consulta_asistenciaResponse.datasource">
@@ -156,6 +162,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\bataconexion\Form_Cliente.bataconexion.ws_genera_movResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\bataconexion\Form_Cliente.bataconexion.ws_get_file_uploadResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\bataconexion\Form_Cliente.bataconexion.ws_inserta_asistenciaResponse.datasource">
@@ -221,7 +230,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\bataconexion\bata_transaccion1.disco" />
+    <None Include="Service References\bataconexion\bata_transaccion.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

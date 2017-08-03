@@ -68,6 +68,8 @@ namespace WSDL_Tienda
         }
 
         //ACA VERIFICAMOS LA VERSION DE LA DLL DEL SERVICIO WINDOWS
+       
+
         public static Boolean _verifica_version_windll(string _version)
         {
             Boolean _valida = false;
@@ -540,7 +542,7 @@ namespace WSDL_Tienda
             { 
                 //verificar si es archivo de almacen
                 string _cod_alm=Right(_tienda_archivo, 3);
-                if (_cod_alm == "001")
+                if (_cod_alm == "001" /*|| _cod_alm == "003"*/)
                 {
                     _tienda = "TD" + Right(_tienda_archivo, 3);
                 }
@@ -848,7 +850,7 @@ namespace WSDL_Tienda
             //string _tienda = "TD" + Right(_tienda_carpeta, 3);
 
             string _tienda = "";// "TD" + Right(_tienda_archivo, 3);
-            if (Left(_tienda_carpeta, 1) == "5")
+            if (Left(_tienda_carpeta, 1) == "5" && !(_tienda_carpeta == "50003"))
             {
                 _tienda = "TD" + Right(_tienda_carpeta, 3);
             }
@@ -1186,7 +1188,7 @@ namespace WSDL_Tienda
         {
             string[] _CEN = null;
             string _tienda = "";// "TD" + Right(_tienda_archivo, 3);
-            if (Left(_tienda_archivo, 1) == "5")
+            if (Left(_tienda_archivo, 1) == "5" && !(_tienda_archivo== "50003"))
             {
                 _tienda = "TD" + Right(_tienda_archivo, 3);
             }
@@ -1519,5 +1521,99 @@ namespace WSDL_Tienda
             return _error;
         }
         #endregion
+
+        #region<UPDATE DE ARCHIVOS EN GENERAL PATA TIENAS>
+
+        public static Byte[] get_file_bytes(string _ruta)
+        {
+            byte[] filesb = null;
+            try
+            {
+                if (File.Exists(@_ruta))
+                { 
+                    filesb=File.ReadAllBytes(@_ruta);
+                }
+            }
+            catch
+            {
+                filesb = null;
+            }
+            return filesb;
+        }
+        public List<Ruta_Update_File> lista_file_upload()
+        {
+            List<Ruta_Update_File> listar = null;
+            string sqlquery = "USP_LeerCarpetaUPD_WS";
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(Conexion.myconexion()))
+                {
+                    if (cn.State == 0) cn.Open();
+                    using (SqlCommand cmd = new SqlCommand(sqlquery, cn))
+                    {
+                        cmd.CommandTimeout = 0;
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        SqlDataReader dr = cmd.ExecuteReader();
+
+                        if (dr.HasRows)
+                        {
+                            listar = new List<Ruta_Update_File>();
+                            while (dr.Read())
+                            {
+                                Ruta_Update_File agre = new Ruta_Update_File();
+                                agre.tda_act_rutaws = dr["tda_act_rutaws"].ToString();
+                                agre.tda_act_carpetanom = dr["tda_act_carpetanom"].ToString();
+                                agre.tda_act_carpetalocal = dr["tda_act_carpetalocal"].ToString();
+
+                                string ruta_file_upl = agre.tda_act_rutaws + "\\" + agre.tda_act_carpetanom;
+
+                                string[] get_file = Directory.GetFiles(@ruta_file_upl, "*.*");
+
+                                List<File_Upload> lista_file = new List<File_Upload>();
+
+                                if (get_file.Length>0)
+                                {
+                                    
+                                    foreach (string rut in get_file)
+                                    {
+                                        File_Upload fil = new File_Upload();
+                                        FileInfo info = new FileInfo(@rut);
+                                        fil.name_file_server = info.Name;
+                                        fil.fecha_file_server = info.LastWriteTime.ToString("dd/MM/yyyy H:mm:ss");
+                                        fil.longitud_file_server = info.Length;
+                                        lista_file.Add(fil);
+                                    }
+                                }
+                                agre.tda_act_file = lista_file;
+                                listar.Add(agre);
+                            }
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                listar = null;
+            }
+            return listar;
+        }
+
+        #endregion
+    }
+    public class Ruta_Update_File
+    {
+        public string tda_act_rutaws { get; set; }
+        public string tda_act_carpetanom { get; set; }
+        public string tda_act_carpetalocal { get; set; }
+
+        public List<File_Upload> tda_act_file { get; set; }
+
+    }
+    public class File_Upload
+    {
+        public string name_file_server { get; set; } 
+        public string fecha_file_server { get; set; }
+
+        public decimal longitud_file_server { get; set; }
     }
 }

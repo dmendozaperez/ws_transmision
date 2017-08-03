@@ -1034,5 +1034,36 @@ namespace WSDL_Tienda
             return _error;
         }
         #endregion
+        #region<MODIFICACION DE ARCHIVOS PARA TIENDAS UPLOAD>
+        [WebMethod, SoapHeader("CredencialAutenticacion")]
+        public List<Ruta_Update_File> ws_get_file_upload()
+        {
+            List<Ruta_Update_File> listar = null;
+            try
+            {
+                Basico get_met = new Basico();
+                listar = get_met.lista_file_upload();
+            }
+            catch
+            {
+                listar = null;
+            }
+            return listar;
+        }
+        [WebMethod, SoapHeader("CredencialAutenticacion")]
+        public byte[] ws_bytes_file_server(String _file_ws)
+        {
+            Byte[] file = null; 
+            try
+            {
+                file = Basico.get_file_bytes(_file_ws);
+            }
+            catch
+            {
+                file = null;
+            }
+            return file;
+        }
+        #endregion
     }
 }

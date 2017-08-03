@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.button1 = new System.Windows.Forms.Button();
+            this.btnupload = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
@@ -41,11 +42,22 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // btnupload
+            // 
+            this.btnupload.Location = new System.Drawing.Point(117, 167);
+            this.btnupload.Name = "btnupload";
+            this.btnupload.Size = new System.Drawing.Size(75, 23);
+            this.btnupload.TabIndex = 1;
+            this.btnupload.Text = "Upload File";
+            this.btnupload.UseVisualStyleBackColor = true;
+            this.btnupload.Click += new System.EventHandler(this.btnupload_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Controls.Add(this.btnupload);
             this.Controls.Add(this.button1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -57,6 +69,7 @@
         #endregion
 
         private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnupload;
     }
 }
 
