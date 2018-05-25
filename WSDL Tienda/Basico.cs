@@ -158,11 +158,14 @@ namespace WSDL_Tienda
             }
             catch(Exception exc)
             {
+                if (cn != null)
+                    if (cn.State == ConnectionState.Open) cn.Close();
                 _error = exc.Message;
                  _existe = "0"; 
 
             }
-            if (cn.State == ConnectionState.Open) cn.Close();
+            if (cn != null)
+                if (cn.State == ConnectionState.Open) cn.Close();
             return _existe;
         }
 
@@ -188,10 +191,13 @@ namespace WSDL_Tienda
             }
             catch(Exception exc)
             {
+                if (cn != null)
+                    if (cn.State == ConnectionState.Open) cn.Close();
                 _error = exc.Message;
             }
 
-            if (cn.State == ConnectionState.Open) cn.Close();
+            if (cn != null)
+                if (cn.State == ConnectionState.Open) cn.Close();
             return _error;
         }
         //consultamos los datos de la asistencia
@@ -217,9 +223,12 @@ namespace WSDL_Tienda
             }
             catch
             {
+                if (cn != null)
+                    if (cn.State == ConnectionState.Open) cn.Close();
                 dt = null;
             }
-            if (cn.State == ConnectionState.Open) cn.Close();
+            if (cn != null)
+                if (cn.State == ConnectionState.Open) cn.Close();
             return dt;
         }
         public static Boolean credenciales_service(string _usuario,ref string _mensaje)
@@ -246,10 +255,13 @@ namespace WSDL_Tienda
             }
             catch(Exception exc)
             {
+                if (cn != null)
+                    if (cn.State == ConnectionState.Open) cn.Close();
                 _mensaje = exc.Message;
                 acceso = false;
             }
-            if (cn.State == ConnectionState.Open) cn.Close();
+            if (cn != null)
+                if (cn.State == ConnectionState.Open) cn.Close();
             return acceso;
         }
         private static string Right(string param, int length)
@@ -290,9 +302,12 @@ namespace WSDL_Tienda
             }
             catch(Exception exc)
             {
+                if (cn != null)
+                    if (cn.State == ConnectionState.Open) cn.Close();
                 _error = exc.Message;
             }
-            if (cn.State == ConnectionState.Open) cn.Close();
+            if (cn != null)
+                if (cn.State == ConnectionState.Open) cn.Close();
             return _error;
         }
         public static DataSet _transac_pendientes(string _cod_tda)
@@ -339,9 +354,12 @@ namespace WSDL_Tienda
             }
             catch(Exception exc)
             {
+                if (cn != null)
+                    if (cn.State == ConnectionState.Open) cn.Close();
                 _error = exc.Message;
             }
-            if (cn.State == ConnectionState.Open) cn.Close();
+            if (cn != null)
+                if (cn.State == ConnectionState.Open) cn.Close();
             return _error;
         }
         public static string _update_error(string _cod_tda,string _error_mov)
@@ -391,9 +409,12 @@ namespace WSDL_Tienda
             }
             catch(Exception exc)
             {
+                if (cn != null)
+                    if (cn.State == ConnectionState.Open) cn.Close();
                 _error = exc.Message;
             }
-            if (cn.State == ConnectionState.Open) cn.Close();
+            if (cn != null)
+                if (cn.State == ConnectionState.Open) cn.Close();
             return _error;
         }
         #endregion
@@ -420,6 +441,8 @@ namespace WSDL_Tienda
             }
             catch(Exception exc)
             {
+                if (cn != null)
+                    if (cn.State == ConnectionState.Open) cn.Close();
                 string _log="C:/inetpub/wwwroot/web_site_tienda/log";
                 string _archivo_log_fecha = _log + "\\log_" + DateTime.Today.ToString("dd-MM-yy") + ".log";
                 //string strPathLog = @"C:\log_error_efact.txt";
@@ -429,7 +452,8 @@ namespace WSDL_Tienda
 
                 _existe = "-1";// "0";
             }
-            if (cn.State == ConnectionState.Open) cn.Close();
+            if (cn != null)
+                if (cn.State == ConnectionState.Open) cn.Close();
             return _existe;
         }
         public static string _existe_archivo(string _tienda_archivo)
@@ -728,10 +752,13 @@ namespace WSDL_Tienda
             }
             catch
             {
+                if (cn != null)
+                    if (cn.State == ConnectionState.Open) cn.Close();
                 ds = null;
                 throw;
             }
-            if (cn.State == ConnectionState.Open) cn.Close();
+            if (cn != null)
+                if (cn.State == ConnectionState.Open) cn.Close();
             return ds;
         }
 
@@ -754,10 +781,13 @@ namespace WSDL_Tienda
             }
             catch(Exception exc)
             {
+                if (cn != null)
+                    if (cn.State == ConnectionState.Open) cn.Close();
                 _error = exc.Message;
                 dt = null;
             }
-            if (cn.State == ConnectionState.Open) cn.Close();
+            if (cn != null)
+                if (cn.State == ConnectionState.Open) cn.Close();
             return dt;
         }
 
@@ -766,6 +796,7 @@ namespace WSDL_Tienda
             string sqlquery = "USP_Consulta_CodReg";
             SqlConnection cn = null;
             SqlCommand cmd = null;
+            string cod = "";
             try
             {
                 cn = new SqlConnection(Conexion.myconexion());
@@ -777,14 +808,17 @@ namespace WSDL_Tienda
                 cmd.Parameters.Add("@cod_retorno", SqlDbType.VarChar, 10);
                 cmd.Parameters["@cod_retorno"].Direction = ParameterDirection.Output;
                 cmd.ExecuteNonQuery();
-                return cmd.Parameters["@cod_retorno"].Value.ToString();
+                cod= cmd.Parameters["@cod_retorno"].Value.ToString();
             }
             catch
             {
-                if (cn.State==ConnectionState.Open) cn.Close();
+                if (cn != null)
+                    if (cn.State == ConnectionState.Open) cn.Close();
                 throw;
             }
-            if (cn.State==ConnectionState.Open) cn.Close();
+            if (cn != null)
+                if (cn.State == ConnectionState.Open) cn.Close();
+            return cod;
         }
 
         public static void _compara_version(string _version_tienda,ref byte[] _archivo)
@@ -1243,9 +1277,12 @@ namespace WSDL_Tienda
             }
             catch (Exception exc)
             {
+                if (cn != null)
+                    if (cn.State == ConnectionState.Open) cn.Close();
                 _error = exc.Message;
             }
-            if (cn.State == ConnectionState.Open) cn.Close();
+            if (cn != null)
+                if (cn.State == ConnectionState.Open) cn.Close();
             return _error;
         }
 
@@ -1269,9 +1306,12 @@ namespace WSDL_Tienda
             }
             catch (Exception exc)
             {
+                if (cn != null)
+                    if (cn.State == ConnectionState.Open) cn.Close();
                 _error = exc.Message;
             }
-            if (cn.State == ConnectionState.Open) cn.Close();
+            if (cn != null)
+                if (cn.State == ConnectionState.Open) cn.Close();
             return _error;
         }
 
@@ -1296,9 +1336,12 @@ namespace WSDL_Tienda
             }
             catch (Exception exc)
             {
+                if (cn != null)
+                    if (cn.State == ConnectionState.Open) cn.Close();
                 _error = exc.Message;
             }
-            if (cn.State == ConnectionState.Open) cn.Close();
+            if (cn != null)
+                if (cn.State == ConnectionState.Open) cn.Close();
             return _error;
         }
         public static string actualizar_version_dllbasico(string _tienda,string _archivo,string _version)
@@ -1321,9 +1364,12 @@ namespace WSDL_Tienda
             }
             catch (Exception exc)
             {
+                if (cn != null)
+                    if (cn.State == ConnectionState.Open) cn.Close();
                 _error = exc.Message;
             }
-            if (cn.State == ConnectionState.Open) cn.Close();
+            if (cn != null)
+                if (cn.State == ConnectionState.Open) cn.Close();
             return _error;
         }
         public static string copiar_archivo_Tienda_SQL(byte[] _archivo_zip, string _tienda_archivo)
@@ -1473,10 +1519,10 @@ namespace WSDL_Tienda
             catch (Exception exc)
             {
                 _error = exc.Message;
-                if (cn != null) ;
+                if (cn != null)
                 if (cn.State == ConnectionState.Open) cn.Close();
             }
-            if (cn != null) ;
+            if (cn != null) 
             if (cn.State == ConnectionState.Open) cn.Close();
             return _error;
         }
@@ -1515,9 +1561,12 @@ namespace WSDL_Tienda
             }
             catch (Exception exc)
             {
+                if (cn != null)
+                    if (cn.State == ConnectionState.Open) cn.Close();
                 _error = exc.Message;
             }
-            if (cn.State == ConnectionState.Open) cn.Close();
+            if (cn != null)
+                if (cn.State == ConnectionState.Open) cn.Close();
             return _error;
         }
         #endregion
@@ -1589,6 +1638,8 @@ namespace WSDL_Tienda
                             }
                         }
                     }
+                    if (cn != null)
+                        if (cn.State == ConnectionState.Open) cn.Close();
                 }
             }
             catch
@@ -1596,6 +1647,165 @@ namespace WSDL_Tienda
                 listar = null;
             }
             return listar;
+        }
+
+        #endregion
+
+        #region<ENVIO DE GUIAS DE ALMACEN CENTRAL DESDE LA BASE DE DATOS POS SERVER NUBE>
+
+        public List<Fvdespc> get_fvdespc_alm(string cod_tda)
+        {
+            List<Fvdespc> lista = null;
+            try
+            {
+                DataSet ds = dsguia_tda(cod_tda);
+                if (ds!=null)
+                {
+                    if (ds.Tables.Count>0)
+                    {
+                        lista = new List<Fvdespc>();
+                        DataTable DT_FVDESPC = ds.Tables[0];
+                        DataTable DT_FVDESPD = ds.Tables[1];
+
+                        foreach(DataRow fila_dt_cab in DT_FVDESPC.Rows)
+                        {
+                            Fvdespc despc = new Fvdespc();
+                            despc.DESC_ALMAC = fila_dt_cab["DESC_ALMAC"].ToString();
+                            despc.DESC_GUDIS= fila_dt_cab["DESC_GUDIS"].ToString();
+                            despc.DESC_NDESP= fila_dt_cab["DESC_NDESP"].ToString();
+                            despc.DESC_TDES= fila_dt_cab["DESC_TDES"].ToString();
+                            despc.DESC_FECHA=Convert.ToDateTime(fila_dt_cab["DESC_FECHA"]);
+                            despc.DESC_FDESP=Convert.ToDateTime(fila_dt_cab["DESC_FDESP"]);
+                            despc.DESC_ESTAD= fila_dt_cab["DESC_ESTAD"].ToString();
+                            despc.DESC_TIPO= fila_dt_cab["DESC_TIPO"].ToString();
+                            despc.DESC_TORI= fila_dt_cab["DESC_TORI"].ToString();
+                            despc.DESC_FEMI=Convert.ToDateTime(fila_dt_cab["DESC_FEMI"]);
+                            despc.DESC_SEMI= fila_dt_cab["DESC_SEMI"].ToString();
+                            despc.DESC_FTRA=Convert.ToDateTime(fila_dt_cab["DESC_FTRA"]);
+                            despc.DESC_NUME= fila_dt_cab["DESC_NUME"].ToString();
+                            despc.DESC_CONCE= fila_dt_cab["DESC_CONCE"].ToString();
+                            despc.DESC_NMOVC= fila_dt_cab["DESC_NMOVC"].ToString();
+                            despc.DESC_EMPRE= fila_dt_cab["DESC_EMPRE"].ToString();
+                            despc.DESC_SECCI= fila_dt_cab["DESC_SECCI"].ToString();
+                            despc.DESC_CANAL= fila_dt_cab["DESC_CANAL"].ToString();
+                            despc.DESC_CADEN= fila_dt_cab["DESC_CADEN"].ToString();
+                            //despc.DESC_FTX= fila_dt_cab["DESC_FTX"].ToString();
+                            //despc.DESC_TXPOS= fila_dt_cab["DESC_TXPOS"].ToString();
+                            //despc.DT_FVDESPD= fila_dt_cab["DESC_ALMAC"].ToString();
+                            despc.DESC_UNCA=Convert.ToDecimal(fila_dt_cab["DESC_UNCA"]);
+                            despc.DESC_UNNC=Convert.ToDecimal(fila_dt_cab["DESC_UNNC"]);
+                            despc.DESC_CAJA=Convert.ToDecimal(fila_dt_cab["DESC_CAJA"]);
+                            despc.DESC_VACA=Convert.ToDecimal(fila_dt_cab["DESC_VACA"]);
+                            despc.DESC_VANC=Convert.ToDecimal(fila_dt_cab["DESC_VANC"]);
+                            despc.DESC_VCAJ=Convert.ToDecimal(fila_dt_cab["DESC_VCAJ"]);
+                            despc.DESC_SEM= fila_dt_cab["DESC_SEM"].ToString();
+
+                            DataTable dt_detalle_des = new DataTable();
+                            /*clonamos la estructura de la tabla*/
+                            dt_detalle_des = DT_FVDESPD.Clone();
+                            dt_detalle_des.TableName = "detalle_guia";
+                            /*realizamos un foreah de data para buscar detalles e insertar fila*/
+                            foreach (DataRow fila_dt_det in DT_FVDESPD.Select("DESD_ALMAC='" + despc.DESC_ALMAC + "' AND DESD_GUDIS='" + despc.DESC_GUDIS + "'"))
+                            {
+                                dt_detalle_des.ImportRow(fila_dt_det);
+                            }
+                            /*verificamos que no se null y haya registros en la tabla detalle para
+                             setear el list detalle si no es haci entonces destruimos instancia despc null*/
+                            if (dt_detalle_des!=null)
+                            {
+                                if (dt_detalle_des.Rows.Count>0)
+                                {
+                                    despc.DT_FVDESPD = dt_detalle_des;
+                                }
+                                else
+                                {
+                                    despc = null;
+                                }
+                            }
+                            else
+                            {
+                                despc = null;
+                            }
+
+                            if (despc!=null)
+                            {
+                                lista.Add(despc);
+                            }
+                            
+                        }
+
+                    }
+                }
+            }
+            catch(Exception exc)
+            {
+                lista = null;
+            }
+            return lista;
+        }
+        private  DataSet dsguia_tda(string cod_tda)
+        {
+            string sqlquery = "USP_GET_ENVIO_TIENDA_GUIA";
+            DataSet ds = null;
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(Conexion.myconexion_posperu()))
+                {
+                    using (SqlCommand cmd = new SqlCommand(sqlquery, cn))
+                    {
+                        cmd.CommandTimeout = 0;
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@COD_TDA", cod_tda);
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            ds = new DataSet();
+                            da.Fill(ds);
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                ds = null;             
+            }
+            return ds;
+
+        }
+
+        public Boolean update_guia_tda(string cod_tda,string nro_guia)
+        {
+            Boolean valida = false;
+            string sqlquery = "USP_UPDATE_GUIA_TDA";
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(Conexion.myconexion_posperu()))
+                {
+                    try
+                    {
+                        if (cn.State == 0) cn.Open();
+                        using (SqlCommand cmd = new SqlCommand(sqlquery, cn))
+                        {
+                            cmd.CommandTimeout = 0;
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@DESC_TDES", cod_tda);
+                            cmd.Parameters.AddWithValue("@DESC_GUDIS", nro_guia);
+                            cmd.ExecuteNonQuery();
+                            valida = true;
+                        }
+                    }
+                    catch (Exception)
+                    {
+                        valida = false;
+                    }
+                    if (cn != null)
+                        if (cn.State == ConnectionState.Open) cn.Close();
+                }
+            }
+            catch (Exception)
+            {
+                valida = false;                
+            }
+            return valida;
         }
 
         #endregion

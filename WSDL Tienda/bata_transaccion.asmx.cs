@@ -1065,5 +1065,42 @@ namespace WSDL_Tienda
             return file;
         }
         #endregion
+
+        #region<ENVIO DE GUIAS DE ALMACEN DATA POS NUBE>
+        [WebMethod, SoapHeader("CredencialAutenticacion")]
+        public List<Fvdespc> ws_get_guias_tienda_almacen(string cod_tda)
+        {
+            List<Fvdespc> lista = null;
+            Basico get_guias = null;
+            try
+            {
+                get_guias = new Basico();
+                lista = get_guias.get_fvdespc_alm(cod_tda);
+
+
+            }
+            catch (Exception)
+            {
+                lista = null;                
+            }
+            return lista;
+        }
+        [WebMethod, SoapHeader("CredencialAutenticacion")]
+        public Boolean ws_update_guia_tienda_almacen(string cod_tda,string nro_guia)
+        {
+            Boolean valida = false;
+            Basico upd_guias = null;
+            try
+            {
+                upd_guias = new Basico();
+                valida = upd_guias.update_guia_tda(cod_tda, nro_guia);
+            }
+            catch (Exception)
+            {
+                valida = false;
+            }           
+            return valida;
+        }
+        #endregion
     }
 }

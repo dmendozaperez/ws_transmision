@@ -31,24 +31,38 @@ namespace Form_Cliente
             conexion.user_name = "emcomer";
             conexion.user_password = "Bata2013";
 
-           String pathFileIn = @"D:\25105011.003";
+           String pathFileIn = @"D:\TD171025.104";
 
-            byte[] _archivo_bytes = File.ReadAllBytes(pathFileIn);
+            //byte[] _archivo_bytes = trans.ws_transmision_salida(conexion, "50805");
+
+            //byte[] _archivo_bytes = File.ReadAllBytes(pathFileIn);
 
 
 
             bataconexion.bata_transaccionSoapClient trans = new bataconexion.bata_transaccionSoapClient();
-            string[] _archivo = { "24174628.cen", "24175733.cen", "24190415.cen" };
-            string[] _valor = trans.ws_borrar_archivo_cen(conexion, "50003", _archivo);
+
+            byte[] _archivo_bytes = trans.ws_transmision_salida(conexion, "00048");
+
+            File.WriteAllBytes("D://pruebacen.zip", _archivo_bytes);
+
+            //string[] _archivo = { "24174628.cen", "24175733.cen", "24190415.cen" };
+            //string[] _valor = trans.ws_borrar_archivo_cen(conexion, "50003", _archivo);
+
+
+
+            //string _existe = trans.ws_existe_tienda(conexion, "50147");
+
 
             //string _error = trans.ws_error_mov_transac(conexion, "5034", "xxxxxx");
-            //byte[] _archivo_bytes = trans.ws_transmision_salida(conexion, "50797");
+            //byte[] _archivo_bytes = trans.ws_transmision_salida(conexion, "50805");
+
+            //File.WriteAllBytes("D://pruebacen.zip", _archivo_bytes);
 
             //string[] _archivo = { "16154501.cen" };
 
             //string[] _valor = trans.ws_borrar_archivo_cen(conexion, "00048", _archivo);
 
-            String[] _mensaje = trans.ws_transmision_ingreso(conexion, _archivo_bytes, "25105011.003");
+            String[] _mensaje = trans.ws_transmision_ingreso(conexion, _archivo_bytes, "TD171025.104");
 
             string _va;
             _va = "";
@@ -188,7 +202,7 @@ namespace Form_Cliente
                                 }
                                 else
                                 {
-                                    _dbftienda();
+                                    //_dbftienda();
                                     string[] _existe_ws_urldata = trans.ws_existe_fepe_dll_data(conexion, _tienda, _nombre_filer_server, _longitud_file_server);
                                     if (_existe_ws_urldata[0].ToString() == "0")
                                     {
@@ -208,5 +222,18 @@ namespace Form_Cliente
             }
         }
 
+        private void btnguias_Click(object sender, EventArgs e)
+        {
+            bataconexion.Autenticacion conexion = new bataconexion.Autenticacion();
+            conexion.user_name = "emcomer";
+            conexion.user_password = "Bata2013";
+            bataconexion.bata_transaccionSoapClient trans = new bataconexion.bata_transaccionSoapClient();
+            var lista= trans.ws_get_guias_tienda_almacen(conexion, "50336");
+
+            foreach(var guia in lista)
+            {
+                //guia.
+            }
+        }
     }
 }

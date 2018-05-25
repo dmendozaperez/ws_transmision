@@ -30,11 +30,12 @@
         {
             this.button1 = new System.Windows.Forms.Button();
             this.btnupload = new System.Windows.Forms.Button();
+            this.btnguias = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(104, 89);
+            this.button1.Location = new System.Drawing.Point(117, 24);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -44,7 +45,7 @@
             // 
             // btnupload
             // 
-            this.btnupload.Location = new System.Drawing.Point(117, 167);
+            this.btnupload.Location = new System.Drawing.Point(96, 95);
             this.btnupload.Name = "btnupload";
             this.btnupload.Size = new System.Drawing.Size(75, 23);
             this.btnupload.TabIndex = 1;
@@ -52,11 +53,23 @@
             this.btnupload.UseVisualStyleBackColor = true;
             this.btnupload.Click += new System.EventHandler(this.btnupload_Click);
             // 
+            // btnguias
+            // 
+            this.btnguias.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnguias.Location = new System.Drawing.Point(12, 181);
+            this.btnguias.Name = "btnguias";
+            this.btnguias.Size = new System.Drawing.Size(260, 40);
+            this.btnguias.TabIndex = 2;
+            this.btnguias.Text = "ws_get_guias_tienda_almacen";
+            this.btnguias.UseVisualStyleBackColor = true;
+            this.btnguias.Click += new System.EventHandler(this.btnguias_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Controls.Add(this.btnguias);
             this.Controls.Add(this.btnupload);
             this.Controls.Add(this.button1);
             this.Name = "Form1";
@@ -70,6 +83,7 @@
 
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button btnupload;
+        private System.Windows.Forms.Button btnguias;
     }
 }
 

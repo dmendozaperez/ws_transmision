@@ -80,6 +80,7 @@
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Conexion.cs" />
+    <Compile Include="Fvdespc.cs" />
     <Compile Include="NetworkShare.cs" />
     <Compile Include="Paquete.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

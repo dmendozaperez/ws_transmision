@@ -104,6 +104,9 @@
     <None Include="Service References\bataconexion\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Service References\bataconexion\Form_Cliente.bataconexion.Fvdespc.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\bataconexion\Form_Cliente.bataconexion.Ruta_Update_File.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -165,6 +168,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\bataconexion\Form_Cliente.bataconexion.ws_get_file_uploadResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\bataconexion\Form_Cliente.bataconexion.ws_get_guias_tienda_almacenResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\bataconexion\Form_Cliente.bataconexion.ws_inserta_asistenciaResponse.datasource">
