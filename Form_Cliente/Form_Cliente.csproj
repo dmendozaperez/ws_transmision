@@ -164,6 +164,9 @@
     <None Include="Service References\bataconexion\Form_Cliente.bataconexion.ws_existe_url_WS_WinResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\bataconexion\Form_Cliente.bataconexion.ws_exists_guia_tienda_almResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\bataconexion\Form_Cliente.bataconexion.ws_genera_movResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -216,6 +219,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\bataconexion\Form_Cliente.bataconexion.ws_update_fepe_dllResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\bataconexion\Form_Cliente.bataconexion.ws_update_guia_tienda_almacenResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\bataconexion\Form_Cliente.bataconexion.ws_update_url_feResponse.datasource">

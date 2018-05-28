@@ -1101,6 +1101,27 @@ namespace WSDL_Tienda
             }           
             return valida;
         }
+        /// <summary>
+        /// si la tienda puede recibir guia automatic del almacen
+        /// </summary>
+        /// <param name="cod_tda"></param>
+        /// <returns></returns>
+        [WebMethod, SoapHeader("CredencialAutenticacion")]
+        public Boolean ws_exists_guia_tienda_alm(string cod_tda)
+        {
+            Boolean valida = false;
+            Basico existe_tda = null;
+            try
+            {
+                existe_tda = new Basico();
+                valida= existe_tda.exists_tienda_envio_trans(cod_tda);
+            }
+            catch (Exception)
+            {
+                valida = false;                
+            }
+            return valida;
+        }
         #endregion
     }
 }

@@ -333,6 +333,22 @@ namespace Form_Cliente.bataconexion {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ws_get_guias_tienda_almacen", ReplyAction="*")]
         System.Threading.Tasks.Task<Form_Cliente.bataconexion.ws_get_guias_tienda_almacenResponse> ws_get_guias_tienda_almacenAsync(Form_Cliente.bataconexion.ws_get_guias_tienda_almacenRequest request);
+        
+        // CODEGEN: Se está generando un contrato de mensaje, ya que el mensaje ws_update_guia_tienda_almacenRequest tiene encabezados.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ws_update_guia_tienda_almacen", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        Form_Cliente.bataconexion.ws_update_guia_tienda_almacenResponse ws_update_guia_tienda_almacen(Form_Cliente.bataconexion.ws_update_guia_tienda_almacenRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ws_update_guia_tienda_almacen", ReplyAction="*")]
+        System.Threading.Tasks.Task<Form_Cliente.bataconexion.ws_update_guia_tienda_almacenResponse> ws_update_guia_tienda_almacenAsync(Form_Cliente.bataconexion.ws_update_guia_tienda_almacenRequest request);
+        
+        // CODEGEN: Se está generando un contrato de mensaje, ya que el mensaje ws_exists_guia_tienda_almRequest tiene encabezados.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ws_exists_guia_tienda_alm", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        Form_Cliente.bataconexion.ws_exists_guia_tienda_almResponse ws_exists_guia_tienda_alm(Form_Cliente.bataconexion.ws_exists_guia_tienda_almRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ws_exists_guia_tienda_alm", ReplyAction="*")]
+        System.Threading.Tasks.Task<Form_Cliente.bataconexion.ws_exists_guia_tienda_almResponse> ws_exists_guia_tienda_almAsync(Form_Cliente.bataconexion.ws_exists_guia_tienda_almRequest request);
     }
     
     /// <remarks/>
@@ -458,6 +474,8 @@ namespace Form_Cliente.bataconexion {
         private decimal dESC_VANCField;
         
         private decimal dESC_VCAJField;
+        
+        private string dESC_SEMField;
         
         private System.Data.DataTable dT_FVDESPD_TREGMEDIDAField;
         
@@ -799,6 +817,18 @@ namespace Form_Cliente.bataconexion {
         
         /// <remarks/>
         [System.Xml.Serialization.XmlElementAttribute(Order=28)]
+        public string DESC_SEM {
+            get {
+                return this.dESC_SEMField;
+            }
+            set {
+                this.dESC_SEMField = value;
+                this.RaisePropertyChanged("DESC_SEM");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=29)]
         public System.Data.DataTable DT_FVDESPD_TREGMEDIDA {
             get {
                 return this.dT_FVDESPD_TREGMEDIDAField;
@@ -2521,6 +2551,86 @@ namespace Form_Cliente.bataconexion {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ws_update_guia_tienda_almacen", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ws_update_guia_tienda_almacenRequest {
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
+        public Form_Cliente.bataconexion.Autenticacion Autenticacion;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public string cod_tda;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=1)]
+        public string nro_guia;
+        
+        public ws_update_guia_tienda_almacenRequest() {
+        }
+        
+        public ws_update_guia_tienda_almacenRequest(Form_Cliente.bataconexion.Autenticacion Autenticacion, string cod_tda, string nro_guia) {
+            this.Autenticacion = Autenticacion;
+            this.cod_tda = cod_tda;
+            this.nro_guia = nro_guia;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ws_update_guia_tienda_almacenResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ws_update_guia_tienda_almacenResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public bool ws_update_guia_tienda_almacenResult;
+        
+        public ws_update_guia_tienda_almacenResponse() {
+        }
+        
+        public ws_update_guia_tienda_almacenResponse(bool ws_update_guia_tienda_almacenResult) {
+            this.ws_update_guia_tienda_almacenResult = ws_update_guia_tienda_almacenResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ws_exists_guia_tienda_alm", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ws_exists_guia_tienda_almRequest {
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
+        public Form_Cliente.bataconexion.Autenticacion Autenticacion;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public string cod_tda;
+        
+        public ws_exists_guia_tienda_almRequest() {
+        }
+        
+        public ws_exists_guia_tienda_almRequest(Form_Cliente.bataconexion.Autenticacion Autenticacion, string cod_tda) {
+            this.Autenticacion = Autenticacion;
+            this.cod_tda = cod_tda;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ws_exists_guia_tienda_almResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ws_exists_guia_tienda_almResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public bool ws_exists_guia_tienda_almResult;
+        
+        public ws_exists_guia_tienda_almResponse() {
+        }
+        
+        public ws_exists_guia_tienda_almResponse(bool ws_exists_guia_tienda_almResult) {
+            this.ws_exists_guia_tienda_almResult = ws_exists_guia_tienda_almResult;
+        }
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public interface bata_transaccionSoapChannel : Form_Cliente.bataconexion.bata_transaccionSoap, System.ServiceModel.IClientChannel {
     }
@@ -3570,6 +3680,58 @@ namespace Form_Cliente.bataconexion {
             inValue.Autenticacion = Autenticacion;
             inValue.cod_tda = cod_tda;
             return ((Form_Cliente.bataconexion.bata_transaccionSoap)(this)).ws_get_guias_tienda_almacenAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Form_Cliente.bataconexion.ws_update_guia_tienda_almacenResponse Form_Cliente.bataconexion.bata_transaccionSoap.ws_update_guia_tienda_almacen(Form_Cliente.bataconexion.ws_update_guia_tienda_almacenRequest request) {
+            return base.Channel.ws_update_guia_tienda_almacen(request);
+        }
+        
+        public bool ws_update_guia_tienda_almacen(Form_Cliente.bataconexion.Autenticacion Autenticacion, string cod_tda, string nro_guia) {
+            Form_Cliente.bataconexion.ws_update_guia_tienda_almacenRequest inValue = new Form_Cliente.bataconexion.ws_update_guia_tienda_almacenRequest();
+            inValue.Autenticacion = Autenticacion;
+            inValue.cod_tda = cod_tda;
+            inValue.nro_guia = nro_guia;
+            Form_Cliente.bataconexion.ws_update_guia_tienda_almacenResponse retVal = ((Form_Cliente.bataconexion.bata_transaccionSoap)(this)).ws_update_guia_tienda_almacen(inValue);
+            return retVal.ws_update_guia_tienda_almacenResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<Form_Cliente.bataconexion.ws_update_guia_tienda_almacenResponse> Form_Cliente.bataconexion.bata_transaccionSoap.ws_update_guia_tienda_almacenAsync(Form_Cliente.bataconexion.ws_update_guia_tienda_almacenRequest request) {
+            return base.Channel.ws_update_guia_tienda_almacenAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<Form_Cliente.bataconexion.ws_update_guia_tienda_almacenResponse> ws_update_guia_tienda_almacenAsync(Form_Cliente.bataconexion.Autenticacion Autenticacion, string cod_tda, string nro_guia) {
+            Form_Cliente.bataconexion.ws_update_guia_tienda_almacenRequest inValue = new Form_Cliente.bataconexion.ws_update_guia_tienda_almacenRequest();
+            inValue.Autenticacion = Autenticacion;
+            inValue.cod_tda = cod_tda;
+            inValue.nro_guia = nro_guia;
+            return ((Form_Cliente.bataconexion.bata_transaccionSoap)(this)).ws_update_guia_tienda_almacenAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Form_Cliente.bataconexion.ws_exists_guia_tienda_almResponse Form_Cliente.bataconexion.bata_transaccionSoap.ws_exists_guia_tienda_alm(Form_Cliente.bataconexion.ws_exists_guia_tienda_almRequest request) {
+            return base.Channel.ws_exists_guia_tienda_alm(request);
+        }
+        
+        public bool ws_exists_guia_tienda_alm(Form_Cliente.bataconexion.Autenticacion Autenticacion, string cod_tda) {
+            Form_Cliente.bataconexion.ws_exists_guia_tienda_almRequest inValue = new Form_Cliente.bataconexion.ws_exists_guia_tienda_almRequest();
+            inValue.Autenticacion = Autenticacion;
+            inValue.cod_tda = cod_tda;
+            Form_Cliente.bataconexion.ws_exists_guia_tienda_almResponse retVal = ((Form_Cliente.bataconexion.bata_transaccionSoap)(this)).ws_exists_guia_tienda_alm(inValue);
+            return retVal.ws_exists_guia_tienda_almResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<Form_Cliente.bataconexion.ws_exists_guia_tienda_almResponse> Form_Cliente.bataconexion.bata_transaccionSoap.ws_exists_guia_tienda_almAsync(Form_Cliente.bataconexion.ws_exists_guia_tienda_almRequest request) {
+            return base.Channel.ws_exists_guia_tienda_almAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<Form_Cliente.bataconexion.ws_exists_guia_tienda_almResponse> ws_exists_guia_tienda_almAsync(Form_Cliente.bataconexion.Autenticacion Autenticacion, string cod_tda) {
+            Form_Cliente.bataconexion.ws_exists_guia_tienda_almRequest inValue = new Form_Cliente.bataconexion.ws_exists_guia_tienda_almRequest();
+            inValue.Autenticacion = Autenticacion;
+            inValue.cod_tda = cod_tda;
+            return ((Form_Cliente.bataconexion.bata_transaccionSoap)(this)).ws_exists_guia_tienda_almAsync(inValue);
         }
     }
 }

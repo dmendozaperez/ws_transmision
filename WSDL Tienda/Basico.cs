@@ -1652,7 +1652,11 @@ namespace WSDL_Tienda
         #endregion
 
         #region<ENVIO DE GUIAS DE ALMACEN CENTRAL DESDE LA BASE DE DATOS POS SERVER NUBE>
-
+        /// <summary>
+        /// retorna las guias cab y det en object
+        /// </summary>
+        /// <param name="cod_tda"></param>
+        /// <returns></returns>
         public List<Fvdespc> get_fvdespc_alm(string cod_tda)
         {
             List<Fvdespc> lista = null;
@@ -1743,7 +1747,12 @@ namespace WSDL_Tienda
             }
             return lista;
         }
-        private  DataSet dsguia_tda(string cod_tda)
+        /// <summary>
+        /// retorna las guias cab y det en dataset
+        /// </summary>
+        /// <param name="cod_tda"></param>
+        /// <returns></returns>
+        private DataSet dsguia_tda(string cod_tda)
         {
             string sqlquery = "USP_GET_ENVIO_TIENDA_GUIA";
             DataSet ds = null;
@@ -1771,7 +1780,12 @@ namespace WSDL_Tienda
             return ds;
 
         }
-
+        /// <summary>
+        /// si la guias fue grabada entonces modificamos el valor de envio
+        /// </summary>
+        /// <param name="cod_tda"></param>
+        /// <param name="nro_guia"></param>
+        /// <returns></returns>
         public Boolean update_guia_tda(string cod_tda,string nro_guia)
         {
             Boolean valida = false;
@@ -1796,6 +1810,47 @@ namespace WSDL_Tienda
                     catch (Exception)
                     {
                         valida = false;
+                    }
+                    if (cn != null)
+                        if (cn.State == ConnectionState.Open) cn.Close();
+                }
+            }
+            catch (Exception)
+            {
+                valida = false;                
+            }
+            return valida;
+        }
+        /// <summary>
+        /// si la tienda existe en la tabla como activo , quiere decir que recibe trasapaso automatic
+        /// </summary>
+        /// <param name="codigo de tienda"></param>
+        /// <returns></returns>
+        public Boolean exists_tienda_envio_trans(string cod_tda)
+        {
+            Boolean valida = false;
+            string sqlquery = "USP_VALIDA_TIENDA_ACTIVA";
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(Conexion.myconexion_posperu()))
+                {
+                    try
+                    {
+                        if (cn.State == 0) cn.Open();
+                        using (SqlCommand cmd = new SqlCommand(sqlquery, cn))
+                        {
+                            cmd.CommandTimeout = 0;
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@COD_TDA", cod_tda);
+                            cmd.Parameters.Add("@VAL_ACT", SqlDbType.Bit);
+                            cmd.Parameters["@VAL_ACT"].Direction = ParameterDirection.Output;
+                            cmd.ExecuteNonQuery();
+                            valida = (Boolean)cmd.Parameters["@VAL_ACT"].Value;
+                        }
+                    }
+                    catch (Exception exc)
+                    {
+                        
                     }
                     if (cn != null)
                         if (cn.State == ConnectionState.Open) cn.Close();

@@ -228,6 +228,9 @@ namespace Form_Cliente
             conexion.user_name = "emcomer";
             conexion.user_password = "Bata2013";
             bataconexion.bata_transaccionSoapClient trans = new bataconexion.bata_transaccionSoapClient();
+
+            Boolean existe = trans.ws_exists_guia_tienda_alm(conexion, "50140");
+
             var lista= trans.ws_get_guias_tienda_almacen(conexion, "50336");
 
             foreach(var guia in lista)
