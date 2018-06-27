@@ -742,8 +742,8 @@ namespace WSDL_Tienda
             Boolean _valida = false;
             try
             {
-                //_valida = Basico._verifica_version_exeupdate(_version);
-                _valida = false;
+                _valida = Basico._verifica_version_exeupdate(_version);
+                //_valida = false;
             }
             catch
             {
