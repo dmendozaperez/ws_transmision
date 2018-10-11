@@ -31,19 +31,33 @@ namespace Form_Cliente
             conexion.user_name = "emcomer";
             conexion.user_password = "Bata2013";
 
-           String pathFileIn = @"D:\TD171025.104";
+            String pathFileIn = @"D:\TD181008.143";
+
+            //var 
 
             //byte[] _archivo_bytes = trans.ws_transmision_salida(conexion, "50805");
 
-            //byte[] _archivo_bytes = File.ReadAllBytes(pathFileIn);
+            byte[] _archivo_bytes = File.ReadAllBytes(pathFileIn);
 
 
 
             bataconexion.bata_transaccionSoapClient trans = new bataconexion.bata_transaccionSoapClient();
 
-            byte[] _archivo_bytes = trans.ws_transmision_salida(conexion, "00048");
+            var files = trans.ws_get_filepaq_ws_bytes(conexion);
+            if (files.Count() > 0)
+            {
+                foreach(var item in files)
+                {
+                    trans.ws_delete_paq_ws(conexion, item.files_origen);
+                }
+            }
+            //var valida_ecu= trans.ws_valida_tda_ecu(conexion, "50143");
 
-            File.WriteAllBytes("D://pruebacen.zip", _archivo_bytes);
+            string v = "";
+
+            //byte[] _archivo_bytes = trans.ws_transmision_salida(conexion, "50143");
+
+            //File.WriteAllBytes("D://pruebacen.zip", _archivo_bytes);
 
             //string[] _archivo = { "24174628.cen", "24175733.cen", "24190415.cen" };
             //string[] _valor = trans.ws_borrar_archivo_cen(conexion, "50003", _archivo);
@@ -62,7 +76,7 @@ namespace Form_Cliente
 
             //string[] _valor = trans.ws_borrar_archivo_cen(conexion, "00048", _archivo);
 
-            String[] _mensaje = trans.ws_transmision_ingreso(conexion, _archivo_bytes, "TD171025.104");
+            String[] _mensaje = trans.ws_transmision_ingreso(conexion, _archivo_bytes, "TD181008.143");
 
             string _va;
             _va = "";
@@ -87,8 +101,8 @@ namespace Form_Cliente
             //return;
 
             //byte[] _archivo_bytes = trans.ws_transmision_salida(conexion, "50401");
-            
-            
+
+
 
             //string[] _archivo = { "05131911.CEN", "05140706.CEN", "05141606.CEN", "05143902.CEN", "06220230.CEN", "06230051.CEN"};
             //string[] _valor= trans.ws_borrar_archivo_cen(conexion, "50401", _archivo);

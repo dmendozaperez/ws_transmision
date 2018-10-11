@@ -1034,6 +1034,26 @@ namespace WSDL_Tienda
             return _error;
         }
         #endregion
+
+        #region<VALIDA TIENDA ECUADOR>
+        [WebMethod, SoapHeader("CredencialAutenticacion")]
+        public Resultado_Tda_Ecu ws_valida_tda_ecu(string cod_tda)
+        {
+            Resultado_Tda_Ecu result = null;
+            try
+            {
+                result = new Resultado_Tda_Ecu();
+                result = Basico.valida_tda_ecu(cod_tda);
+            }
+            catch (Exception exc)
+            {
+                result.existe = true;
+                result.descripcion = exc.Message;      
+            }
+            return result;
+        }
+        #endregion
+
         #region<MODIFICACION DE ARCHIVOS PARA TIENDAS UPLOAD>
         [WebMethod, SoapHeader("CredencialAutenticacion")]
         public List<Ruta_Update_File> ws_get_file_upload()
@@ -1123,5 +1143,58 @@ namespace WSDL_Tienda
             return valida;
         }
         #endregion
+
+        #region<REGION DE WEB SERVICE ENVIO Y RECEPCION DE PAQUETES>
+        [WebMethod, SoapHeader("CredencialAutenticacion")]
+        public bool ws_send_filepaq_ws_tx(byte[] file,string carpeta,string _nom_file)
+        {
+            Boolean valida = false;
+            try
+            {
+                if (!Directory.Exists(@carpeta)) Directory.CreateDirectory(@carpeta);
+                string _archivo_ruta = carpeta + "\\" + _nom_file + ".cen";
+                File.WriteAllBytes(@_archivo_ruta, file);
+                valida = true;
+            }
+            catch 
+            {
+                valida = false;               
+            }
+            return valida;
+        }
+
+
+        [WebMethod, SoapHeader("CredencialAutenticacion")]        
+        public List<Paq_Get> ws_get_filepaq_ws_bytes()
+        {
+            List<Paq_Get> listar = null;
+            Basico get_paq = null;
+            try
+            {
+                get_paq = new Basico();
+                listar = get_paq.get_paq_lista();
+            }
+            catch 
+            {
+                listar = null;                
+            }
+            return listar;
+        }
+        [WebMethod, SoapHeader("CredencialAutenticacion")]
+        public void ws_delete_paq_ws(string ruta_delete)
+        {            
+            try
+            {
+                if (File.Exists(@ruta_delete))
+                {
+                    File.Delete(@ruta_delete);
+                }
+            }
+            catch
+            {                
+            }         
+        }
+        #endregion
+
     }
 }

@@ -107,6 +107,12 @@
     <None Include="Service References\bataconexion\Form_Cliente.bataconexion.Fvdespc.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\bataconexion\Form_Cliente.bataconexion.Paq_Get.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\bataconexion\Form_Cliente.bataconexion.Resultado_Tda_Ecu.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\bataconexion\Form_Cliente.bataconexion.Ruta_Update_File.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -120,6 +126,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\bataconexion\Form_Cliente.bataconexion.ws_consulta_asistenciaResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\bataconexion\Form_Cliente.bataconexion.ws_delete_paq_wsResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\bataconexion\Form_Cliente.bataconexion.ws_dll_service_tdaResponse.datasource">
@@ -170,6 +179,9 @@
     <None Include="Service References\bataconexion\Form_Cliente.bataconexion.ws_genera_movResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\bataconexion\Form_Cliente.bataconexion.ws_get_filepaq_ws_bytesResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\bataconexion\Form_Cliente.bataconexion.ws_get_file_uploadResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -180,6 +192,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\bataconexion\Form_Cliente.bataconexion.ws_recepcion_transacResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\bataconexion\Form_Cliente.bataconexion.ws_send_filepaq_ws_txResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\bataconexion\Form_Cliente.bataconexion.ws_tdaupdate_wsurlResponse.datasource">
@@ -228,6 +243,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\bataconexion\Form_Cliente.bataconexion.ws_update_versiondll_netResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\bataconexion\Form_Cliente.bataconexion.ws_valida_tda_ecuResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\bataconexion\Reference.svcmap">

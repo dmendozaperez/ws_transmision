@@ -22,8 +22,8 @@
     <MetadataSource Address="http://localhost:2091/bata_transaccion.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="bata_transaccion.disco" MetadataType="Disco" ID="69622df5-cf68-4c05-b138-613414294a4e" SourceId="1" SourceUrl="http://localhost:2091/bata_transaccion.asmx?disco" />
-    <MetadataFile FileName="bata_transaccion1.wsdl" MetadataType="Wsdl" ID="cfa681a6-2eab-4d27-b76d-34a7b0d940f7" SourceId="1" SourceUrl="http://localhost:2091/bata_transaccion.asmx?wsdl" />
+    <MetadataFile FileName="bata_transaccion.disco" MetadataType="Disco" ID="6b37b4aa-07bb-48b9-a3c7-8e0efd1392a9" SourceId="1" SourceUrl="http://localhost:2091/bata_transaccion.asmx?disco" />
+    <MetadataFile FileName="bata_transaccion1.wsdl" MetadataType="Wsdl" ID="609040b4-e35d-4dae-9741-9c84ea43e16e" SourceId="1" SourceUrl="http://localhost:2091/bata_transaccion.asmx?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

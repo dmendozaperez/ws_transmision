@@ -10,15 +10,15 @@ namespace WSDL_Tienda
         //static string strconexion = ConfigurationManager.ConnectionStrings["MyConexionSql"].ConnectionString;
         public static string myconexion()
         {
-            return "Server=10.10.10.208;Database=BdWebService;User ID=sa;Password=Bata2013;Trusted_Connection=False;";
+            return "Server=posperu.bgr.pe;Database=BdWebService;User ID=pos_oracle;Password=Bata2018**;Trusted_Connection=False;";
         }
         public static string myconexion_tda()
         {
-            return "Server=10.10.10.208;Database=BdTienda;User ID=sa;Password=Bata2013;Trusted_Connection=False;";
+            return "Server=posperu.bgr.pe;Database=BDPOS;User ID=pos_oracle;Password=Bata2018**;Trusted_Connection=False;";
         }
         public static String myconexion_almacen()
         {
-            return "Server=10.10.10.208;Database=BdAlmacen;User ID=sa;Password=Bata2013;Trusted_Connection=False;";
+            return "Server=posperu.bgr.pe;Database=BdAlmacen;User ID=sa;Password=Bata2013;Trusted_Connection=False;";
         }
         public static String myconexion_posperu()
         {

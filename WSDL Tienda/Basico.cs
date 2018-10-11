@@ -1244,6 +1244,9 @@ namespace WSDL_Tienda
 
                     string _ruta_carpeta = dt_ruta.Rows[0]["ruta_server"].ToString() + "/" + _tienda;
                     string _carpeta_sal = _ruta_carpeta + "/" + dt_tipo.Rows[0]["carpeta"].ToString();
+
+                    if (!Directory.Exists(@_carpeta_sal)) Directory.CreateDirectory(@_carpeta_sal);
+
                     _ruta = _carpeta_sal;
                     _CEN = System.IO.Directory.GetFiles(@_carpeta_sal, "*.CEN");
                     //var xml_p = from xmlp in _xml where Basico.Right(xmlp, 10) != "_inter.xml" select xmlp;
@@ -1571,8 +1574,49 @@ namespace WSDL_Tienda
         }
         #endregion
 
-        #region<UPDATE DE ARCHIVOS EN GENERAL PATA TIENAS>
+        #region<UPDATE DE ARCHIVOS EN GENERAL PATA TIENDAS>
 
+        public static Resultado_Tda_Ecu valida_tda_ecu(string cod_tda)
+        {
+            Resultado_Tda_Ecu result = null;
+            string sqlquery = "USP_ValidaTdaEcu";
+            try
+            {
+                result = new Resultado_Tda_Ecu();
+                using (SqlConnection cn = new SqlConnection(Conexion.myconexion_tda()))
+                {
+                    try
+                    {
+                        if (cn.State == 0) cn.Open();
+                        using (SqlCommand cmd = new SqlCommand(sqlquery, cn))
+                        {
+                            cmd.CommandTimeout = 0;
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@cod_tda", cod_tda);
+
+                            cmd.Parameters.Add("@existe", SqlDbType.Bit);
+                            cmd.Parameters["@existe"].Direction = ParameterDirection.Output;
+
+                            cmd.ExecuteNonQuery();
+
+                            result.existe =Convert.ToBoolean(cmd.Parameters["@existe"].Value);
+                            result.descripcion = "";
+                        }
+                    }
+                    catch (Exception exc)
+                    {
+                        result.existe =true;
+                        result.descripcion = exc.Message;
+                    }
+                }
+            }
+            catch (Exception exc)
+            {
+                result.existe = true;
+                result.descripcion = exc.Message;                
+            }
+            return result;
+        }
         public static Byte[] get_file_bytes(string _ruta)
         {
             byte[] filesb = null;
@@ -1862,6 +1906,107 @@ namespace WSDL_Tienda
             }
             return valida;
         }
+
+
+        #region<ENVIO DE PAQUETES OUT>
+
+        public List<Paq_Get> get_paq_lista()
+        {
+            List<Paq_Get> listar = null;
+            DataTable dt = null;
+            try
+            {
+                dt = get_path_location();
+
+                if (dt!=null)
+                {
+                    DataRow[] fila = null;
+                    fila = dt.Select("rutloc_namedbf='PAQ_ORI'");
+                    string paq_ori = fila[0]["RUTLOC_LOCATION"].ToString();
+                    fila = dt.Select("rutloc_namedbf='PAQ_DES'");
+                    string paq_des = fila[0]["RUTLOC_LOCATION"].ToString();
+
+                    if (Directory.Exists(@paq_ori))
+                    {
+                        string[] _carpeta_local = Directory.GetDirectories(@paq_ori);
+                        if (_carpeta_local.Length > 0)
+                        {
+                            listar = new List<Paq_Get>();
+                            for (Int32 i = 0; i < _carpeta_local.Length; ++i)
+                            {
+                                var dir_server_tda = new DirectoryInfo(_carpeta_local[i].ToString()).Name;
+                                string ruta_wx = _carpeta_local[i].ToString() + "\\WX";
+                                if (Directory.Exists(@ruta_wx))
+                                {
+                                    string[] filespaq = Directory.GetFiles(@ruta_wx, "*.*");
+                                    for (Int32 a = 0; a < filespaq.Length; ++a)
+                                    {
+                                        string _archivo_borrar = filespaq[a].ToString();
+                                        if (File.Exists(@_archivo_borrar))
+                                        {
+                                            FileInfo infofile = new FileInfo(_archivo_borrar);
+                                            string _archivo_copiar = infofile.Name;
+                                            string _ruta_copiar_error = paq_des + "\\" + dir_server_tda + "\\WX\\" + _archivo_copiar;
+                                            byte[] files_wx = File.ReadAllBytes(@_archivo_borrar);
+
+                                            Paq_Get pq = new Paq_Get();
+                                            pq.files_origen = _archivo_borrar;
+                                            pq.file_destino = _ruta_copiar_error;
+                                            pq.file_bytes = files_wx;
+                                            listar.Add(pq);
+
+                                            //string _ruta_copiar_error = _ruta_remoto + "\\" + dir_server_tda + "\\WX\\" + _archivo_copiar;
+                                            //_copiar_valida(_archivo_borrar, _ruta_copiar_error);
+
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    
+                }
+            }
+            catch(Exception exc) 
+            {
+                listar = null;
+            }
+            return listar;
+        }
+        private DataTable get_path_location()
+        {
+            DataTable dt = null;
+            string sqlquery = "[USP_GET_LOCATION_DBF]";
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(Conexion.myconexion_posperu()))
+                {
+                    using (SqlCommand cmd = new SqlCommand(sqlquery, cn))
+                    {
+                        cmd.CommandTimeout = 0;
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        cmd.Parameters.AddWithValue("@location_dbf", "");
+                        cmd.Parameters.AddWithValue("@tipo_location", "R");
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            dt = new DataTable();
+                            da.Fill(dt);
+                        }
+                    }
+                }
+            }
+            catch 
+            {
+
+                dt = null;
+            }
+            return dt;
+        } 
+        
+
+        #endregion
+
 
         #endregion
     }

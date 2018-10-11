@@ -28,4 +28,10 @@ namespace WSDL_Tienda
             this.desresul = vdesresul;
         }
     }
+
+    public class Resultado_Tda_Ecu
+    {
+        public Boolean existe { get; set; }
+        public string descripcion { get; set; }
+    }
 }

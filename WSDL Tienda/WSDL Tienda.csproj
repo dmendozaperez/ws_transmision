@@ -29,6 +29,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -83,6 +84,7 @@
     <Compile Include="Fvdespc.cs" />
     <Compile Include="NetworkShare.cs" />
     <Compile Include="Paquete.cs" />
+    <Compile Include="Paq_Get.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Recepcion.cs" />
     <Compile Include="Resultado.cs" />
