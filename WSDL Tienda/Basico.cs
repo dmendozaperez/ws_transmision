@@ -1910,6 +1910,70 @@ namespace WSDL_Tienda
 
         #region<ENVIO DE PAQUETES OUT>
 
+        //public List<Xml_Get> get_xml_lista()
+        //{
+        //    List<Xml_Get> listar = null;
+        //    try
+        //    {
+
+        //    }
+        //    catch (Exception)
+        //    {
+        //        listar = null;
+        //    }
+        //    return listar;
+        //}
+
+        public List<Xml_Get> get_xml_lista()
+        {
+            List<Xml_Get> listar = null;
+            DataTable dt = null;
+            try
+            {
+                dt = get_path_location_xml();
+
+                if (dt != null)
+                {                   
+                    listar = new List<Xml_Get>();
+                    foreach (DataRow fila in dt.Rows)
+                    {
+                        string xml_ori = fila["ruta_xml_ori"].ToString();
+                        string xml_des = fila["ruta_xml_des"].ToString();
+                        if (Directory.Exists(@xml_ori))
+                        {
+                           
+                                        string[] filespaq = Directory.GetFiles(@xml_ori, "*.xml*").Take(100).ToArray();
+                                        for (Int32 a = 0; a < filespaq.Length; ++a)
+                                        {
+                                            string _archivo_borrar = filespaq[a].ToString();
+                                            if (File.Exists(@_archivo_borrar))
+                                            {
+                                                FileInfo infofile = new FileInfo(_archivo_borrar);
+                                                string _archivo_copiar = infofile.Name;
+                                                string _ruta_copiar_error = xml_des +"\\" + _archivo_copiar ;
+                                                byte[] files_wx = File.ReadAllBytes(@_archivo_borrar);
+
+                                                Xml_Get pq = new Xml_Get();
+                                                pq.files_origen = _archivo_borrar;
+                                                pq.file_destino = _ruta_copiar_error;
+                                                pq.file_bytes = files_wx;
+                                                listar.Add(pq);
+
+                                              
+                                            }
+                                        }                                   
+                        }
+                    }
+
+                }
+            }
+            catch (Exception exc)
+            {
+                listar = null;
+            }
+            return listar;
+        }
+
         public List<Paq_Get> get_paq_lista()
         {
             List<Paq_Get> listar = null;
@@ -1926,6 +1990,9 @@ namespace WSDL_Tienda
                     fila = dt.Select("rutloc_namedbf='PAQ_DES'");
                     string paq_des = fila[0]["RUTLOC_LOCATION"].ToString();
 
+                    //paq_ori = @"D:\REMOTO\";
+
+
                     if (Directory.Exists(@paq_ori))
                     {
                         string[] _carpeta_local = Directory.GetDirectories(@paq_ori);
@@ -1938,7 +2005,7 @@ namespace WSDL_Tienda
                                 string ruta_wx = _carpeta_local[i].ToString() + "\\WX";
                                 if (Directory.Exists(@ruta_wx))
                                 {
-                                    string[] filespaq = Directory.GetFiles(@ruta_wx, "*.*");
+                                    string[] filespaq = Directory.GetFiles(@ruta_wx, "*.*").Take(100).ToArray();
                                     for (Int32 a = 0; a < filespaq.Length; ++a)
                                     {
                                         string _archivo_borrar = filespaq[a].ToString();
@@ -2002,8 +2069,36 @@ namespace WSDL_Tienda
                 dt = null;
             }
             return dt;
-        } 
-        
+        }
+        private DataTable get_path_location_xml()
+        {
+            DataTable dt = null;
+            string sqlquery = "[USP_Consulta_RutaXml_Externo]";
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(Conexion.myconexion_ws()))
+                {
+                    using (SqlCommand cmd = new SqlCommand(sqlquery, cn))
+                    {
+                        cmd.CommandTimeout = 0;
+                        cmd.CommandType = CommandType.StoredProcedure;
+                        //cmd.Parameters.AddWithValue("@location_dbf", "");
+                        //cmd.Parameters.AddWithValue("@tipo_location", "R");
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            dt = new DataTable();
+                            da.Fill(dt);
+                        }
+                    }
+                }
+            }
+            catch
+            {
+
+                dt = null;
+            }
+            return dt;
+        }
 
         #endregion
 

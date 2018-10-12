@@ -91,6 +91,7 @@
     <Compile Include="Seguridad.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Xml_Get.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Capa_Dato\Capa_Dato.csproj">

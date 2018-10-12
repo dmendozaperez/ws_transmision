@@ -24,5 +24,9 @@ namespace WSDL_Tienda
         {
             return "Server=posperu.bgr.pe;Database=BDPOS;User ID=pos_oracle;Password=Bata2018**;Trusted_Connection=False;";
         }
+        public static String myconexion_ws()
+        {
+            return "Server=posperu.bgr.pe;Database=BDWSBATA;User ID=pos_oracle;Password=Bata2018**;Trusted_Connection=False;";
+        }
     }
 }

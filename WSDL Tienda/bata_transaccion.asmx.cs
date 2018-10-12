@@ -1144,6 +1144,42 @@ namespace WSDL_Tienda
         }
         #endregion
 
+
+        #region<REGION DE XML UPLOAD>
+        [WebMethod, SoapHeader("CredencialAutenticacion")]
+        public string ws_delete_xml_ws(string ruta_delete)
+        {
+            string error = "";
+            try
+            {
+                if (File.Exists(@ruta_delete))
+                {
+                    File.Delete(@ruta_delete);
+                }
+            }
+            catch(Exception exc)
+            {
+                error = exc.Message;
+            }
+            return error;
+        }
+        [WebMethod, SoapHeader("CredencialAutenticacion")]
+        public List<Xml_Get> ws_get_filexml_ws_bytes()
+        {
+            List<Xml_Get> listar = null;
+            Basico get_xml = null;
+            try
+            {
+                get_xml = new Basico();
+                listar = get_xml.get_xml_lista();
+            }
+            catch
+            {
+                listar = null;
+            }
+            return listar;
+        }
+        #endregion
         #region<REGION DE WEB SERVICE ENVIO Y RECEPCION DE PAQUETES>
         [WebMethod, SoapHeader("CredencialAutenticacion")]
         public bool ws_send_filepaq_ws_tx(byte[] file,string carpeta,string _nom_file)
@@ -1194,6 +1230,9 @@ namespace WSDL_Tienda
             {                
             }         
         }
+
+      
+
         #endregion
 
     }

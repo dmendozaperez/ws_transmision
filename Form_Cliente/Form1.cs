@@ -37,13 +37,32 @@ namespace Form_Cliente
 
             //byte[] _archivo_bytes = trans.ws_transmision_salida(conexion, "50805");
 
-            byte[] _archivo_bytes = File.ReadAllBytes(pathFileIn);
+            //byte[] _archivo_bytes = File.ReadAllBytes(pathFileIn);
 
-
+          
 
             bataconexion.bata_transaccionSoapClient trans = new bataconexion.bata_transaccionSoapClient();
 
-            var files = trans.ws_get_filepaq_ws_bytes(conexion);
+
+            var files = trans.ws_get_filexml_ws_bytes(conexion);
+
+            
+
+            byte[] _archivo_bytes = trans.ws_transmision_salida(conexion, "50334");
+
+            string _existe = trans.ws_existe_tienda(conexion, "50334");
+
+
+            //string[] _archivo = { "12094649.cen", "12095703.cen" };
+
+            //string[] _valor = trans.ws_borrar_archivo_cen(conexion, "50334", _archivo);
+
+            string[] _mensaje = trans.ws_tienda_lista(conexion);
+
+            //var files = trans.ws_get_filepaq_ws_bytes(conexion);
+
+
+
             if (files.Count() > 0)
             {
                 foreach(var item in files)
@@ -76,7 +95,7 @@ namespace Form_Cliente
 
             //string[] _valor = trans.ws_borrar_archivo_cen(conexion, "00048", _archivo);
 
-            String[] _mensaje = trans.ws_transmision_ingreso(conexion, _archivo_bytes, "TD181008.143");
+            //String[] _mensaje = trans.ws_transmision_ingreso(conexion, _archivo_bytes, "TD181008.143");
 
             string _va;
             _va = "";

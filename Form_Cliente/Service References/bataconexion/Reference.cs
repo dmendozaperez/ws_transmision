@@ -358,6 +358,22 @@ namespace Form_Cliente.bataconexion {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ws_exists_guia_tienda_alm", ReplyAction="*")]
         System.Threading.Tasks.Task<Form_Cliente.bataconexion.ws_exists_guia_tienda_almResponse> ws_exists_guia_tienda_almAsync(Form_Cliente.bataconexion.ws_exists_guia_tienda_almRequest request);
         
+        // CODEGEN: Se está generando un contrato de mensaje, ya que el mensaje ws_delete_xml_wsRequest tiene encabezados.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ws_delete_xml_ws", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        Form_Cliente.bataconexion.ws_delete_xml_wsResponse ws_delete_xml_ws(Form_Cliente.bataconexion.ws_delete_xml_wsRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ws_delete_xml_ws", ReplyAction="*")]
+        System.Threading.Tasks.Task<Form_Cliente.bataconexion.ws_delete_xml_wsResponse> ws_delete_xml_wsAsync(Form_Cliente.bataconexion.ws_delete_xml_wsRequest request);
+        
+        // CODEGEN: Se está generando un contrato de mensaje, ya que el mensaje ws_get_filexml_ws_bytesRequest tiene encabezados.
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ws_get_filexml_ws_bytes", ReplyAction="*")]
+        [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
+        Form_Cliente.bataconexion.ws_get_filexml_ws_bytesResponse ws_get_filexml_ws_bytes(Form_Cliente.bataconexion.ws_get_filexml_ws_bytesRequest request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ws_get_filexml_ws_bytes", ReplyAction="*")]
+        System.Threading.Tasks.Task<Form_Cliente.bataconexion.ws_get_filexml_ws_bytesResponse> ws_get_filexml_ws_bytesAsync(Form_Cliente.bataconexion.ws_get_filexml_ws_bytesRequest request);
+        
         // CODEGEN: Se está generando un contrato de mensaje, ya que el mensaje ws_send_filepaq_ws_txRequest tiene encabezados.
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ws_send_filepaq_ws_tx", ReplyAction="*")]
         [System.ServiceModel.XmlSerializerFormatAttribute(SupportFaults=true)]
@@ -450,6 +466,66 @@ namespace Form_Cliente.bataconexion {
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
     public partial class Paq_Get : object, System.ComponentModel.INotifyPropertyChanged {
+        
+        private string files_origenField;
+        
+        private string file_destinoField;
+        
+        private byte[] file_bytesField;
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=0)]
+        public string files_origen {
+            get {
+                return this.files_origenField;
+            }
+            set {
+                this.files_origenField = value;
+                this.RaisePropertyChanged("files_origen");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(Order=1)]
+        public string file_destino {
+            get {
+                return this.file_destinoField;
+            }
+            set {
+                this.file_destinoField = value;
+                this.RaisePropertyChanged("file_destino");
+            }
+        }
+        
+        /// <remarks/>
+        [System.Xml.Serialization.XmlElementAttribute(DataType="base64Binary", Order=2)]
+        public byte[] file_bytes {
+            get {
+                return this.file_bytesField;
+            }
+            set {
+                this.file_bytesField = value;
+                this.RaisePropertyChanged("file_bytes");
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.7.3056.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class Xml_Get : object, System.ComponentModel.INotifyPropertyChanged {
         
         private string files_origenField;
         
@@ -2810,6 +2886,71 @@ namespace Form_Cliente.bataconexion {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ws_delete_xml_ws", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ws_delete_xml_wsRequest {
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
+        public Form_Cliente.bataconexion.Autenticacion Autenticacion;
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public string ruta_delete;
+        
+        public ws_delete_xml_wsRequest() {
+        }
+        
+        public ws_delete_xml_wsRequest(Form_Cliente.bataconexion.Autenticacion Autenticacion, string ruta_delete) {
+            this.Autenticacion = Autenticacion;
+            this.ruta_delete = ruta_delete;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ws_delete_xml_wsResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ws_delete_xml_wsResponse {
+        
+        public ws_delete_xml_wsResponse() {
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ws_get_filexml_ws_bytes", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ws_get_filexml_ws_bytesRequest {
+        
+        [System.ServiceModel.MessageHeaderAttribute(Namespace="http://tempuri.org/")]
+        public Form_Cliente.bataconexion.Autenticacion Autenticacion;
+        
+        public ws_get_filexml_ws_bytesRequest() {
+        }
+        
+        public ws_get_filexml_ws_bytesRequest(Form_Cliente.bataconexion.Autenticacion Autenticacion) {
+            this.Autenticacion = Autenticacion;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+    [System.ServiceModel.MessageContractAttribute(WrapperName="ws_get_filexml_ws_bytesResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
+    public partial class ws_get_filexml_ws_bytesResponse {
+        
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public Form_Cliente.bataconexion.Xml_Get[] ws_get_filexml_ws_bytesResult;
+        
+        public ws_get_filexml_ws_bytesResponse() {
+        }
+        
+        public ws_get_filexml_ws_bytesResponse(Form_Cliente.bataconexion.Xml_Get[] ws_get_filexml_ws_bytesResult) {
+            this.ws_get_filexml_ws_bytesResult = ws_get_filexml_ws_bytesResult;
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="ws_send_filepaq_ws_tx", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
     public partial class ws_send_filepaq_ws_txRequest {
         
@@ -2824,19 +2965,15 @@ namespace Form_Cliente.bataconexion {
         public string carpeta;
         
         [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=2)]
-        public string ruta_tx;
-        
-        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=3)]
         public string _nom_file;
         
         public ws_send_filepaq_ws_txRequest() {
         }
         
-        public ws_send_filepaq_ws_txRequest(Form_Cliente.bataconexion.Autenticacion Autenticacion, byte[] file, string carpeta, string ruta_tx, string _nom_file) {
+        public ws_send_filepaq_ws_txRequest(Form_Cliente.bataconexion.Autenticacion Autenticacion, byte[] file, string carpeta, string _nom_file) {
             this.Autenticacion = Autenticacion;
             this.file = file;
             this.carpeta = carpeta;
-            this.ruta_tx = ruta_tx;
             this._nom_file = _nom_file;
         }
     }
@@ -4052,16 +4189,62 @@ namespace Form_Cliente.bataconexion {
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Form_Cliente.bataconexion.ws_delete_xml_wsResponse Form_Cliente.bataconexion.bata_transaccionSoap.ws_delete_xml_ws(Form_Cliente.bataconexion.ws_delete_xml_wsRequest request) {
+            return base.Channel.ws_delete_xml_ws(request);
+        }
+        
+        public void ws_delete_xml_ws(Form_Cliente.bataconexion.Autenticacion Autenticacion, string ruta_delete) {
+            Form_Cliente.bataconexion.ws_delete_xml_wsRequest inValue = new Form_Cliente.bataconexion.ws_delete_xml_wsRequest();
+            inValue.Autenticacion = Autenticacion;
+            inValue.ruta_delete = ruta_delete;
+            Form_Cliente.bataconexion.ws_delete_xml_wsResponse retVal = ((Form_Cliente.bataconexion.bata_transaccionSoap)(this)).ws_delete_xml_ws(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<Form_Cliente.bataconexion.ws_delete_xml_wsResponse> Form_Cliente.bataconexion.bata_transaccionSoap.ws_delete_xml_wsAsync(Form_Cliente.bataconexion.ws_delete_xml_wsRequest request) {
+            return base.Channel.ws_delete_xml_wsAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<Form_Cliente.bataconexion.ws_delete_xml_wsResponse> ws_delete_xml_wsAsync(Form_Cliente.bataconexion.Autenticacion Autenticacion, string ruta_delete) {
+            Form_Cliente.bataconexion.ws_delete_xml_wsRequest inValue = new Form_Cliente.bataconexion.ws_delete_xml_wsRequest();
+            inValue.Autenticacion = Autenticacion;
+            inValue.ruta_delete = ruta_delete;
+            return ((Form_Cliente.bataconexion.bata_transaccionSoap)(this)).ws_delete_xml_wsAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        Form_Cliente.bataconexion.ws_get_filexml_ws_bytesResponse Form_Cliente.bataconexion.bata_transaccionSoap.ws_get_filexml_ws_bytes(Form_Cliente.bataconexion.ws_get_filexml_ws_bytesRequest request) {
+            return base.Channel.ws_get_filexml_ws_bytes(request);
+        }
+        
+        public Form_Cliente.bataconexion.Xml_Get[] ws_get_filexml_ws_bytes(Form_Cliente.bataconexion.Autenticacion Autenticacion) {
+            Form_Cliente.bataconexion.ws_get_filexml_ws_bytesRequest inValue = new Form_Cliente.bataconexion.ws_get_filexml_ws_bytesRequest();
+            inValue.Autenticacion = Autenticacion;
+            Form_Cliente.bataconexion.ws_get_filexml_ws_bytesResponse retVal = ((Form_Cliente.bataconexion.bata_transaccionSoap)(this)).ws_get_filexml_ws_bytes(inValue);
+            return retVal.ws_get_filexml_ws_bytesResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        System.Threading.Tasks.Task<Form_Cliente.bataconexion.ws_get_filexml_ws_bytesResponse> Form_Cliente.bataconexion.bata_transaccionSoap.ws_get_filexml_ws_bytesAsync(Form_Cliente.bataconexion.ws_get_filexml_ws_bytesRequest request) {
+            return base.Channel.ws_get_filexml_ws_bytesAsync(request);
+        }
+        
+        public System.Threading.Tasks.Task<Form_Cliente.bataconexion.ws_get_filexml_ws_bytesResponse> ws_get_filexml_ws_bytesAsync(Form_Cliente.bataconexion.Autenticacion Autenticacion) {
+            Form_Cliente.bataconexion.ws_get_filexml_ws_bytesRequest inValue = new Form_Cliente.bataconexion.ws_get_filexml_ws_bytesRequest();
+            inValue.Autenticacion = Autenticacion;
+            return ((Form_Cliente.bataconexion.bata_transaccionSoap)(this)).ws_get_filexml_ws_bytesAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         Form_Cliente.bataconexion.ws_send_filepaq_ws_txResponse Form_Cliente.bataconexion.bata_transaccionSoap.ws_send_filepaq_ws_tx(Form_Cliente.bataconexion.ws_send_filepaq_ws_txRequest request) {
             return base.Channel.ws_send_filepaq_ws_tx(request);
         }
         
-        public bool ws_send_filepaq_ws_tx(Form_Cliente.bataconexion.Autenticacion Autenticacion, byte[] file, string carpeta, string ruta_tx, string _nom_file) {
+        public bool ws_send_filepaq_ws_tx(Form_Cliente.bataconexion.Autenticacion Autenticacion, byte[] file, string carpeta, string _nom_file) {
             Form_Cliente.bataconexion.ws_send_filepaq_ws_txRequest inValue = new Form_Cliente.bataconexion.ws_send_filepaq_ws_txRequest();
             inValue.Autenticacion = Autenticacion;
             inValue.file = file;
             inValue.carpeta = carpeta;
-            inValue.ruta_tx = ruta_tx;
             inValue._nom_file = _nom_file;
             Form_Cliente.bataconexion.ws_send_filepaq_ws_txResponse retVal = ((Form_Cliente.bataconexion.bata_transaccionSoap)(this)).ws_send_filepaq_ws_tx(inValue);
             return retVal.ws_send_filepaq_ws_txResult;
@@ -4072,12 +4255,11 @@ namespace Form_Cliente.bataconexion {
             return base.Channel.ws_send_filepaq_ws_txAsync(request);
         }
         
-        public System.Threading.Tasks.Task<Form_Cliente.bataconexion.ws_send_filepaq_ws_txResponse> ws_send_filepaq_ws_txAsync(Form_Cliente.bataconexion.Autenticacion Autenticacion, byte[] file, string carpeta, string ruta_tx, string _nom_file) {
+        public System.Threading.Tasks.Task<Form_Cliente.bataconexion.ws_send_filepaq_ws_txResponse> ws_send_filepaq_ws_txAsync(Form_Cliente.bataconexion.Autenticacion Autenticacion, byte[] file, string carpeta, string _nom_file) {
             Form_Cliente.bataconexion.ws_send_filepaq_ws_txRequest inValue = new Form_Cliente.bataconexion.ws_send_filepaq_ws_txRequest();
             inValue.Autenticacion = Autenticacion;
             inValue.file = file;
             inValue.carpeta = carpeta;
-            inValue.ruta_tx = ruta_tx;
             inValue._nom_file = _nom_file;
             return ((Form_Cliente.bataconexion.bata_transaccionSoap)(this)).ws_send_filepaq_ws_txAsync(inValue);
         }
