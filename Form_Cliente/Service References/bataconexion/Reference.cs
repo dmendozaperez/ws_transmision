@@ -2910,7 +2910,14 @@ namespace Form_Cliente.bataconexion {
     [System.ServiceModel.MessageContractAttribute(WrapperName="ws_delete_xml_wsResponse", WrapperNamespace="http://tempuri.org/", IsWrapped=true)]
     public partial class ws_delete_xml_wsResponse {
         
+        [System.ServiceModel.MessageBodyMemberAttribute(Namespace="http://tempuri.org/", Order=0)]
+        public string ws_delete_xml_wsResult;
+        
         public ws_delete_xml_wsResponse() {
+        }
+        
+        public ws_delete_xml_wsResponse(string ws_delete_xml_wsResult) {
+            this.ws_delete_xml_wsResult = ws_delete_xml_wsResult;
         }
     }
     
@@ -4193,11 +4200,12 @@ namespace Form_Cliente.bataconexion {
             return base.Channel.ws_delete_xml_ws(request);
         }
         
-        public void ws_delete_xml_ws(Form_Cliente.bataconexion.Autenticacion Autenticacion, string ruta_delete) {
+        public string ws_delete_xml_ws(Form_Cliente.bataconexion.Autenticacion Autenticacion, string ruta_delete) {
             Form_Cliente.bataconexion.ws_delete_xml_wsRequest inValue = new Form_Cliente.bataconexion.ws_delete_xml_wsRequest();
             inValue.Autenticacion = Autenticacion;
             inValue.ruta_delete = ruta_delete;
             Form_Cliente.bataconexion.ws_delete_xml_wsResponse retVal = ((Form_Cliente.bataconexion.bata_transaccionSoap)(this)).ws_delete_xml_ws(inValue);
+            return retVal.ws_delete_xml_wsResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]

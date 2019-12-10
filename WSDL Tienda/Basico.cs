@@ -21,6 +21,8 @@ namespace WSDL_Tienda
 
         private static String _ruta_dll_modulo_hash { get { return "C:\\inetpub\\wwwroot\\service_windows_tda\\Modulo_Hash.dll"; } }
 
+        private static String _ruta_dll_CapaModulo { get { return "C:\\inetpub\\wwwroot\\service_windows_tda\\CapaModulo.dll"; } }
+
         private static String _ruta_certificado { get { return "C:\\inetpub\\wwwroot\\service_windows_tda\\CDBATA.pfx"; } }
 
         private static String _ruta_fepe_dll { get { return "C:\\inetpub\\wwwroot\\service_windows_tda\\Carvajal.FEPE.PreSC.dll"; } }
@@ -67,8 +69,29 @@ namespace WSDL_Tienda
             return _valida;
         }
 
+        #region<facturacion paperless>
+        public static Boolean _verifica_version_dll_paperless(string _version)
+        {
+            Boolean _valida = false;
+            try
+            {
+                var fvi = FileVersionInfo.GetVersionInfo(_ruta_dll_CapaModulo);
+                var version_server = fvi.FileVersion;
+                if (version_server != _version)
+                {
+                    _valida = true;
+                }
+            }
+            catch
+            {
+                _valida = false;
+            }
+            return _valida;
+        }
+        #endregion
+
         //ACA VERIFICAMOS LA VERSION DE LA DLL DEL SERVICIO WINDOWS
-       
+
 
         public static Boolean _verifica_version_windll(string _version)
         {
@@ -259,6 +282,7 @@ namespace WSDL_Tienda
                     if (cn.State == ConnectionState.Open) cn.Close();
                 _mensaje = exc.Message;
                 acceso = false;
+                throw exc;
             }
             if (cn != null)
                 if (cn.State == ConnectionState.Open) cn.Close();
@@ -599,6 +623,8 @@ namespace WSDL_Tienda
                     {
                         string _ruta_carpeta=dt_ruta.Rows[i]["ruta_server"].ToString() + "/" + _tienda;
                         string _ruta_tda = dt_ruta.Rows[i]["ruta_server"].ToString();
+                        string _des_id= dt_ruta.Rows[i]["des_id"].ToString();
+                        
 
                         //creando la carpeta de la tienda
 
@@ -654,8 +680,20 @@ namespace WSDL_Tienda
                                         //}
                                         //else
                                         //{
-                                            File.WriteAllBytes(_archivo_ruta, _archivo_zip);
-                                        //}
+                                            if (_des_id!="3")
+                                            { 
+                                                File.WriteAllBytes(_archivo_ruta, _archivo_zip);
+                                            }
+                                            else
+                                            {
+                                        if (!Directory.Exists(@dt_ruta.Rows[i]["des_ruta_destino"].ToString())) Directory.CreateDirectory(@dt_ruta.Rows[i]["des_ruta_destino"].ToString());
+
+                                                string _des_path_sql_file =  dt_ruta.Rows[i]["des_ruta_destino"].ToString() + "\\" + _tienda_archivo;
+                                                
+                                                File.WriteAllBytes(_des_path_sql_file, _archivo_zip);
+                                                File.WriteAllBytes(_archivo_ruta, _archivo_zip);
+                                    }
+                                    //}
                                     //}
                                     //else
                                     //{
@@ -695,7 +733,7 @@ namespace WSDL_Tienda
             {
                 
                 _error = exc.Message;
-                throw;
+                throw exc;
             }
             return _error;
         }
@@ -750,15 +788,19 @@ namespace WSDL_Tienda
                 da.Fill(ds);
                 
             }
-            catch
+            catch(Exception exc)
             {
                 if (cn != null)
                     if (cn.State == ConnectionState.Open) cn.Close();
                 ds = null;
-                throw;
+                throw exc;
             }
-            if (cn != null)
-                if (cn.State == ConnectionState.Open) cn.Close();
+            finally
+            {
+                if (cn != null)
+                    if (cn.State == ConnectionState.Open) cn.Close();
+            }
+            
             return ds;
         }
 
@@ -2104,6 +2146,53 @@ namespace WSDL_Tienda
 
 
         #endregion
+
+        public Impresion_QR GET_IMPRESION_QR(string cod_tda)
+        {
+            Impresion_QR imp_qr =null;
+            string sqlquery = "USP_GET_IMPRESIONQR_TIENDA";
+            try
+            {
+                imp_qr = new Impresion_QR();
+                imp_qr.cod_tda = cod_tda;
+                imp_qr.err_qr = "";
+                using (SqlConnection cn = new SqlConnection(Conexion.myconexion_posperu()))
+                {
+                    try
+                    {
+                        if (cn.State == 0) cn.Open();
+                        using (SqlCommand cmd = new SqlCommand(sqlquery, cn))
+                        {
+                            cmd.CommandTimeout = 0;
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@COD_TDA", cod_tda);
+                            cmd.Parameters.Add("@IMP_QR", SqlDbType.VarChar, 1);
+                            cmd.Parameters["@IMP_QR"].Direction = ParameterDirection.Output;
+                            cmd.ExecuteNonQuery();
+                            imp_qr.imp_qr = cmd.Parameters["@IMP_QR"].Value.ToString();                            
+                        }
+
+                    }
+                    catch(Exception exc) 
+                    {                       
+                        imp_qr.err_qr = exc.Message;
+                    }
+                    if (cn != null)
+                        if (cn.State == ConnectionState.Open) cn.Close();
+                }
+            }
+            catch (Exception exc)
+            {
+                imp_qr.err_qr = exc.Message;
+            }
+            return imp_qr ;
+        }
+    }
+    public class Impresion_QR
+    {
+        public string cod_tda { get; set; }
+        public string imp_qr { get; set; }
+        public string err_qr { get; set; }
     }
     public class Ruta_Update_File
     {

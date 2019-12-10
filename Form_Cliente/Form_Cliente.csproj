@@ -97,7 +97,7 @@
     <WCFMetadataStorage Include="Service References\bataconexion\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\bataconexion\bata_transaccion.wsdl" />
+    <None Include="Service References\bataconexion\bata_transaccion1.wsdl" />
     <None Include="Service References\bataconexion\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
@@ -269,7 +269,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\bataconexion\bata_transaccion1.disco" />
+    <None Include="Service References\bataconexion\bata_transaccion.disco" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

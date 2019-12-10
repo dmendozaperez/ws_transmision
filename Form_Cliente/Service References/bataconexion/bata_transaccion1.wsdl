@@ -789,7 +789,11 @@
         </s:complexType>
       </s:element>
       <s:element name="ws_delete_xml_wsResponse">
-        <s:complexType />
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ws_delete_xml_wsResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
       </s:element>
       <s:element name="ws_get_filexml_ws_bytes">
         <s:complexType />
@@ -2447,10 +2451,10 @@
   </wsdl:binding>
   <wsdl:service name="bata_transaccion">
     <wsdl:port name="bata_transaccionSoap" binding="tns:bata_transaccionSoap">
-      <soap:address location="http://posperu.bgr.pe/web_site_tienda/bata_transaccion.asmx" />
+      <soap:address location="http://www.bgr.pe/web_site_tienda/bata_transaccion.asmx" />
     </wsdl:port>
     <wsdl:port name="bata_transaccionSoap12" binding="tns:bata_transaccionSoap12">
-      <soap12:address location="http://posperu.bgr.pe/web_site_tienda/bata_transaccion.asmx" />
+      <soap12:address location="http://www.bgr.pe/web_site_tienda/bata_transaccion.asmx" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

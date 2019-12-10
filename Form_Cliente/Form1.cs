@@ -31,7 +31,7 @@ namespace Form_Cliente
             conexion.user_name = "emcomer";
             conexion.user_password = "Bata2013";
 
-            String pathFileIn = @"D:\TD181008.143";
+            //String pathFileIn = @"D:\td190130.102";
 
             //var 
 
@@ -39,40 +39,58 @@ namespace Form_Cliente
 
             //byte[] _archivo_bytes = File.ReadAllBytes(pathFileIn);
 
-          
+            //string w = "td";
+            //if (w=="TD")
+            //{
 
-            bataconexion.bata_transaccionSoapClient trans = new bataconexion.bata_transaccionSoapClient();
+            //}
+
+            String pathFileIn = @"D:\td190128.433";            
+            byte[] _archivo_bytes = File.ReadAllBytes(pathFileIn);
+            bataconexion.bata_transaccionSoapClient trans = new bataconexion.bata_transaccionSoapClient();            
+
+            String[] _mensaje = trans.ws_transmision_ingreso(conexion, _archivo_bytes, "TD190128.433");
+            pathFileIn = @"D:\td190129.433";
+            _archivo_bytes = File.ReadAllBytes(pathFileIn);
+            _mensaje = trans.ws_transmision_ingreso(conexion, _archivo_bytes, "TD190129.433");
+            pathFileIn = @"D:\td190130.433";
+            _archivo_bytes = File.ReadAllBytes(pathFileIn);
+            _mensaje = trans.ws_transmision_ingreso(conexion, _archivo_bytes, "TD190130.433");
+            pathFileIn = @"D:\td190131.433";
+            _archivo_bytes = File.ReadAllBytes(pathFileIn);
+            _mensaje = trans.ws_transmision_ingreso(conexion, _archivo_bytes, "TD190131.433");
+
+            MessageBox.Show("ok");
+            return;
+            //var files = trans.ws_get_filexml_ws_bytes(conexion);
 
 
-            var files = trans.ws_get_filexml_ws_bytes(conexion);
 
-            
+            //byte[] _archivo_bytes = trans.ws_transmision_salida(conexion, "50334");
 
-            byte[] _archivo_bytes = trans.ws_transmision_salida(conexion, "50334");
-
-            string _existe = trans.ws_existe_tienda(conexion, "50334");
+            //string _existe = trans.ws_existe_tienda(conexion, "50143");
 
 
             //string[] _archivo = { "12094649.cen", "12095703.cen" };
 
             //string[] _valor = trans.ws_borrar_archivo_cen(conexion, "50334", _archivo);
 
-            string[] _mensaje = trans.ws_tienda_lista(conexion);
+            //string[] _mensaje = trans.ws_tienda_lista(conexion);
 
             //var files = trans.ws_get_filepaq_ws_bytes(conexion);
 
 
 
-            if (files.Count() > 0)
-            {
-                foreach(var item in files)
-                {
-                    trans.ws_delete_paq_ws(conexion, item.files_origen);
-                }
-            }
-            //var valida_ecu= trans.ws_valida_tda_ecu(conexion, "50143");
+            //if (files.Count() > 0)
+            //{
+            //    foreach(var item in files)
+            //    {
+            //        trans.ws_delete_paq_ws(conexion, item.files_origen);
+            //    }
+            //}
+            ////var valida_ecu= trans.ws_valida_tda_ecu(conexion, "50143");
 
-            string v = "";
+            //string v = "";
 
             //byte[] _archivo_bytes = trans.ws_transmision_salida(conexion, "50143");
 
@@ -99,14 +117,17 @@ namespace Form_Cliente
 
             string _va;
             _va = "";
+            //return;
 
             //string[] _archivo = { "16221149", "16230703", "17001258", "17080754", "17090807", "17100335", "17110208", "17120147", "17130851", "17140139" };
             //string[] _valor = trans.ws_borrar_archivo_cen(conexion, "50143", _archivo);
 
-            //DateTime fecha_ini =Convert.ToDateTime("23/02/2015");
+            DateTime fecha_ini = Convert.ToDateTime("23/02/2015");
             //DateTime fecha_fin = Convert.ToDateTime("24/02/2015");
 
-            //string[] inser = trans.ws_inserta_asistencia(conexion, "83056", "50174", fecha_ini);
+            string[] inser = trans.ws_inserta_asistencia(conexion, "90714", "50999", fecha_ini,"");
+
+            string r = "";
 
             //DataSet inser = trans.ws_consulta_asistencia(conexion, "50143", fecha_ini, fecha_fin);
 

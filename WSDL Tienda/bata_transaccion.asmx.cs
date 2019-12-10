@@ -643,7 +643,7 @@ namespace WSDL_Tienda
                 if (VerificarPermisos(CredencialAutenticacion))
                 {
 
-                    valida = Basico.copiar_archivo_Tienda(_archivo_zip,_name);                    
+                    valida = Basico.copiar_archivo_Tienda(_archivo_zip,_name.ToUpper());                    
                   
                 }
                 else
@@ -688,20 +688,22 @@ namespace WSDL_Tienda
         }
         public static Boolean VerificarPermisos(Autenticacion value)
         {
-            if (value == null)
+            try
             {
-                return false;
-            }
-            else
-            {
-                //Verifica los permiso Ej. Consulta a BD 
-
-                //invocar de la base de datos las credenciales  para la web service
-
-                Basico.credenciales_service(value.user_name, ref _mensaje_conexion_sql);
-
-                if (_mensaje_conexion_sql.Length==0)
+                if (value == null)
                 {
+                    return false;
+                }
+                else
+                {
+                    //Verifica los permiso Ej. Consulta a BD 
+
+                    //invocar de la base de datos las credenciales  para la web service
+
+                    Basico.credenciales_service(value.user_name, ref _mensaje_conexion_sql);
+
+                    if (_mensaje_conexion_sql.Length == 0)
+                    {
                         if (value.user_name == Basico._user_service && value.user_password == Basico._password_service)
                         {
                             return true;
@@ -710,13 +712,20 @@ namespace WSDL_Tienda
                         {
                             return false;
                         }
-                }
-                else
-                {
-                    return false;
+                    }
+                    else
+                    {
+                        return false;
 
+                    }
                 }
             }
+            catch (Exception exc)
+            {
+
+                throw exc;
+            }
+            
         }
 
         #region<REGION DE VERSION DEL SERVICIO WINDOWS>
@@ -792,6 +801,22 @@ namespace WSDL_Tienda
             {
                 _valida = Basico._verifica_version_dllgenerahash(_version);
                // _valida = false;
+            }
+            catch
+            {
+                _valida = false;
+            }
+            return _valida;
+        }
+
+        [WebMethod, SoapHeader("CredencialAutenticacion")]
+        public Boolean ws_existe_genera_version_paperless(string _version)
+        {
+            Boolean _valida = false;
+            try
+            {
+                _valida = Basico._verifica_version_dll_paperless(_version);
+                // _valida = false;
             }
             catch
             {
@@ -926,7 +951,7 @@ namespace WSDL_Tienda
             string _error = "";
             try
             {
-                _error = Basico._existe_archivo(_nombre);
+                _error = "0"; //Basico._existe_archivo(_nombre);
                 //_error = "xxxx";
             }
             catch(Exception exc)
@@ -946,8 +971,8 @@ namespace WSDL_Tienda
                 if (VerificarPermisos(CredencialAutenticacion))
                 {
 
-                    valida = Basico.copiar_archivo_Tienda_SQL(_archivo_zip, _name);
-
+                    //valida = Basico.copiar_archivo_Tienda_SQL(_archivo_zip, _name);
+                    valida = "";
                 }
                 else
                 {
@@ -1231,8 +1256,27 @@ namespace WSDL_Tienda
             }         
         }
 
-      
 
+
+        #endregion
+        #region<IMPRESION DE QR>
+        [WebMethod, SoapHeader("CredencialAutenticacion")]
+        public Impresion_QR ws_tienda_impresion_qr(string _cod_tda)
+        {
+            Impresion_QR imp_qr = null;
+            Basico met_qr = new Basico();
+            try
+            {
+                met_qr = new Basico();
+                imp_qr = met_qr.GET_IMPRESION_QR(_cod_tda);                
+            }
+            catch(Exception exc)
+            {
+                imp_qr.err_qr = exc.Message;
+                
+            }
+            return imp_qr;
+        }
         #endregion
 
     }

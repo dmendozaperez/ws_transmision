@@ -19,11 +19,11 @@
     <ServiceContractMappings />
   </ClientOptions>
   <MetadataSources>
-    <MetadataSource Address="http://posperu.bgr.pe/web_site_tienda/bata_transaccion.asmx" Protocol="http" SourceId="1" />
+    <MetadataSource Address="http://www.bgr.pe/web_site_tienda/bata_transaccion.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="bata_transaccion1.disco" MetadataType="Disco" ID="46944b0e-833b-477a-bb8a-d28388fb5b90" SourceId="1" SourceUrl="http://posperu.bgr.pe/web_site_tienda/bata_transaccion.asmx?disco" />
-    <MetadataFile FileName="bata_transaccion.wsdl" MetadataType="Wsdl" ID="56b33caa-207e-4e75-b072-6d20da40e11f" SourceId="1" SourceUrl="http://posperu.bgr.pe/web_site_tienda/bata_transaccion.asmx?wsdl" />
+    <MetadataFile FileName="bata_transaccion.disco" MetadataType="Disco" ID="8010ec91-e9a0-4a7d-b991-44ef7a115530" SourceId="1" SourceUrl="http://www.bgr.pe/web_site_tienda/bata_transaccion.asmx?disco" />
+    <MetadataFile FileName="bata_transaccion1.wsdl" MetadataType="Wsdl" ID="f2640d80-b6de-4bac-b69a-8ce90ae0965e" SourceId="1" SourceUrl="http://www.bgr.pe/web_site_tienda/bata_transaccion.asmx?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
