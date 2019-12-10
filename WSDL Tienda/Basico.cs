@@ -19,6 +19,8 @@ namespace WSDL_Tienda
 
         private static String _ruta_dll_serviciowin { get { return "C:\\inetpub\\wwwroot\\service_windows_tda\\Transmision.Net.Basico.dll"; } }
 
+        private static String _ruta_dll_serviciowin_ORA { get { return "C:\\inetpub\\wwwroot\\service_windows_tda\\Transmision.Net.Basico.Oracle.dll"; } }
+
         private static String _ruta_dll_modulo_hash { get { return "C:\\inetpub\\wwwroot\\service_windows_tda\\Modulo_Hash.dll"; } }
 
         private static String _ruta_dll_CapaModulo { get { return "C:\\inetpub\\wwwroot\\service_windows_tda\\CapaModulo.dll"; } }
@@ -28,6 +30,7 @@ namespace WSDL_Tienda
         private static String _ruta_fepe_dll { get { return "C:\\inetpub\\wwwroot\\service_windows_tda\\Carvajal.FEPE.PreSC.dll"; } }
 
         private static String _ruta_exe_updatewin { get { return "C:\\inetpub\\wwwroot\\service_windows_tda\\Transmision.NetWin.Update.exe"; } }
+        private static String _ruta_exe_updatewin_ORA { get { return "C:\\inetpub\\wwwroot\\service_windows_tda\\Transmision.NetWin.Update.Oracle.exe"; } }
 
         //ACA VERIFICAMOS SI LA VERSION DEL EXE DEL UPDATE ESTA ACTUALIZADO
         public static Boolean _verifica_version_exeupdate(string _version)
@@ -36,6 +39,25 @@ namespace WSDL_Tienda
             try
             {
                 var fvi = FileVersionInfo.GetVersionInfo(_ruta_exe_updatewin);
+                var version_server = fvi.FileVersion;
+                if (version_server != _version)
+                {
+                    _valida = true;
+                }
+            }
+            catch
+            {
+                _valida = false;
+            }
+            return _valida;
+        }
+
+        public static Boolean _verifica_version_exeupdate_ORA(string _version)
+        {
+            Boolean _valida = false;
+            try
+            {
+                var fvi = FileVersionInfo.GetVersionInfo(_ruta_exe_updatewin_ORA);
                 var version_server = fvi.FileVersion;
                 if (version_server != _version)
                 {
@@ -99,6 +121,24 @@ namespace WSDL_Tienda
             try
             {
                 var fvi = FileVersionInfo.GetVersionInfo(_ruta_dll_serviciowin);
+                var version_server = fvi.FileVersion;
+                if (version_server != _version)
+                {
+                    _valida = true;
+                }
+            }
+            catch
+            {
+                _valida = false;
+            }
+            return _valida;
+        }
+        public static Boolean _verifica_version_windll_ORA(string _version)
+        {
+            Boolean _valida = false;
+            try
+            {
+                var fvi = FileVersionInfo.GetVersionInfo(_ruta_dll_serviciowin_ORA);
                 var version_server = fvi.FileVersion;
                 if (version_server != _version)
                 {

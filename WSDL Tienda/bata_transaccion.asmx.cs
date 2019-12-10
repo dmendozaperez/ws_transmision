@@ -760,6 +760,21 @@ namespace WSDL_Tienda
             }
             return _valida;
         }
+        [WebMethod, SoapHeader("CredencialAutenticacion")]
+        public Boolean ws_existe_exewinupdate_version_ORA(string _version)
+        {
+            Boolean _valida = false;
+            try
+            {
+                _valida = Basico._verifica_version_exeupdate_ORA(_version);
+                //_valida = false;
+            }
+            catch
+            {
+                _valida = false;
+            }
+            return _valida;
+        }
 
         [WebMethod, SoapHeader("CredencialAutenticacion")]
         public Boolean ws_existe_fepe_dll(Decimal _tamaño)
@@ -840,6 +855,23 @@ namespace WSDL_Tienda
             }
             return _valida;
         }
+
+        [WebMethod, SoapHeader("CredencialAutenticacion")]
+        public Boolean ws_existe_serviciowin_version_ORA(string _version)
+        {
+            Boolean _valida = false;
+            try
+            {
+                _valida = Basico._verifica_version_windll_ORA(_version);
+                // _valida = false;
+            }
+            catch
+            {
+                _valida = false;
+            }
+            return _valida;
+        }
+
         #endregion
 
         #region<REGION PARA GENERAR EL MOVIMIENTO WEB SERVICE>
