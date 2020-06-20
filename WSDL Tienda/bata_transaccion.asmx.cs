@@ -1311,5 +1311,25 @@ namespace WSDL_Tienda
         }
         #endregion
 
+        #region<insertar clientes>
+        [WebMethod]
+        public Boolean ws_insertcliente_bata(string dniruc, string nombres, string apelpat, string apemat,
+                                                   string email, string telefono, string codtda)
+        {
+            Boolean valida_ws = false;
+            try
+            {
+                valida_ws = Basico._insertar_cliente_bata(dniruc, nombres, apelpat, apemat,
+                                                          email, telefono, codtda);
+            }
+            catch (Exception)
+            {
+                valida_ws = false;
+            }
+            return valida_ws;
+        }
+
+        #endregion
+
     }
 }

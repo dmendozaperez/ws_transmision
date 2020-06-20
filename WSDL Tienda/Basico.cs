@@ -32,6 +32,49 @@ namespace WSDL_Tienda
         private static String _ruta_exe_updatewin { get { return "C:\\inetpub\\wwwroot\\service_windows_tda\\Transmision.NetWin.Update.exe"; } }
         private static String _ruta_exe_updatewin_ORA { get { return "C:\\inetpub\\wwwroot\\service_windows_tda\\Transmision.NetWin.Update.Oracle.exe"; } }
 
+        /*actualizar cliente*/
+        public static Boolean _insertar_cliente_bata(string dniruc, string nombres, string apelpat, string apemat,
+                                                    string email, string telefono, string codtda)
+        {
+            Boolean valida = false;
+            string sqlquery = "USP_Ins_Mod_ClienteBata";
+            try
+            {
+                using (SqlConnection cn = new SqlConnection(Conexion.myconexion_tda()))
+                {
+                    try
+                    {
+                        if (cn.State == 0) cn.Open();
+                        using (SqlCommand cmd = new SqlCommand(sqlquery, cn))
+                        {
+                            cmd.CommandTimeout = 0;
+                            cmd.CommandType = CommandType.StoredProcedure;
+                            cmd.Parameters.AddWithValue("@dniruc", dniruc);
+                            cmd.Parameters.AddWithValue("@nombres", nombres);
+                            cmd.Parameters.AddWithValue("@apelpat", apelpat);
+                            cmd.Parameters.AddWithValue("@apemat", apemat);
+                            cmd.Parameters.AddWithValue("@email", email);
+                            cmd.Parameters.AddWithValue("@telefono", telefono);
+                            cmd.Parameters.AddWithValue("@codtda", codtda);
+                            cmd.ExecuteNonQuery();
+                            valida = true;
+                        }
+                    }
+                    catch (Exception)
+                    {
+
+                    }
+                    if (cn != null)
+                        if (cn.State == ConnectionState.Open) cn.Close();
+                }
+            }
+            catch (Exception)
+            {
+                valida = false;
+            }
+            return valida;
+        }
+
         //ACA VERIFICAMOS SI LA VERSION DEL EXE DEL UPDATE ESTA ACTUALIZADO
         public static Boolean _verifica_version_exeupdate(string _version)
         {
@@ -1906,6 +1949,8 @@ namespace WSDL_Tienda
             return ds;
 
         }
+
+
         /// <summary>
         /// si la guias fue grabada entonces modificamos el valor de envio
         /// </summary>
